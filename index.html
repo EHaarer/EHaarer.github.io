@@ -273,20 +273,68 @@
 
 			<!--Project Section-->
 			<section class="container column" id="project-section">
-				<h1 class="subtitle">PROJECTS</h1>
+				<h1 class="subtitle">FEATURED PROJECTS</h1>
 
 				Filter Buttons
 				<div class="contianer row" id="button-section">
 					<button class="filter-button active" onclick="filterSelection('all')">All</button>
 					<button class="filter-button" onclick="filterSelection('python')">Python</button>
-					<button class="filter-button" onclick="filterSelection('java')">Java</button>
-					<button class="filter-button" onclick="filterSelection('Ai')">Ai</button>
+					<button class="filter-button" onclick="filterSelection('web')">Web Dev</button>
+					<button class="filter-button" onclick="filterSelection('C/C++')">C/C++</button>
 				</div>
 
 				<!--Individual Projects-->
-				<!-- <div class="container row" id="project-container">
+				<div class="container row" id="project-container">
 
 					<div class="each-project python">
+						<img class="proj-img" src="assets/img/PersonPredict.jpg"/>
+						<div class="proj-description container column">
+							<div class="img-description">
+							  <h2>Predicting Pedestrian Positions with YOLOv5 and Gen Ai</h2>
+							  <p>Researched different methods to predict people's position in a top-down view with accurate distance estimation from POV images</h3>
+							  <br>
+							  <a href="assets/Translating pedestrian indoor images into maps.pdf" class="first-color">Full Paper Linked Here</a>
+							  <br>
+							  <a href="https://colab.research.google.com/drive/1CZGr46_Ez9OYsXvN1XWZQGrARS2Dz6u1?usp=sharing" class="first-color">Find the Code Here</a>
+							  <br>
+							  <i>Written in Python with Google Collab</i>
+						  </div>
+						</div>
+					  </div>
+
+					  <div class="each-project C/C++">
+						<img class="proj-img" src="assets/img/DrinkMixerWireframe.png"/>
+						<div class="proj-description container column">
+							<div class="img-description">
+							  <h2>Multimodal Drink Dispenser </h2>
+							  <p>Prototpye drink mixer that decodes RFID card data to pour the perfect drink. Also hosts a native web server to request custom drinks over WiFi! </h3>
+							  <br>
+							  <a href="assets/Translating pedestrian indoor images into maps.pdf" class="first-color">Demo Video</a>
+							  <br>
+							  <a href="https://colab.research.google.com/drive/1CZGr46_Ez9OYsXvN1XWZQGrARS2Dz6u1?usp=sharing" class="first-color">Find the Code Here</a>
+							  <br>
+							  <i>Written in C using Arduino</i>
+						  </div>
+						</div>
+					  </div>
+
+					  <div class="each-project web python">
+						<img class="proj-img" src="assets/img/ItalyWebsiteScreenshot.png"/>
+						<div class="proj-description container column">
+							<div class="img-description">
+							  <h2>Mapping Crimes in Italy Capstone</h2>
+							  <p>Created a website for George Mason University to view and filter crimes in early Italy for historical research. Ability to upload custom maps and datasets, powered by React, PostgreSQL and Mapbox.gl</h3>
+							  <br>
+							  <a href="" class="first-color">Link to the Site</a>
+							  <br>
+							  <a href="https://github.com/jamaball/JIF-2355-Mapping-Violence-In-Modern-Italy" class="first-color">Github Page</a>
+							  <br>
+							  <i>Written using React, Javascript, and Python</i>
+						  </div>
+						</div>
+					  </div>
+
+					<!-- <div class="each-project python">
 					  <img class="proj-img" src="assets/img/Ants_Vs_Somebees.png"/>
 					  <div class="proj-description container column">
 					  	<div class="img-description">
