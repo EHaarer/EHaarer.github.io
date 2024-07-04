@@ -300,6 +300,8 @@ ul {
 
 li {
 	margin: 5px;
+	max-width: 50vw;
+    overflow-wrap: break-word;
 }
 
 ul {
