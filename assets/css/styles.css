@@ -107,7 +107,7 @@ a:hover {
 /**Home**/
 #home-section {
 	height: 100vh;
-	display: grid; 
+	display: flex; 
 	align-items: center; 
 	justify-content: center;
 	flex-wrap: wrap;
@@ -139,8 +139,7 @@ a:hover {
 
 #app {
 	font-size:150%;
-	width: 70 rem;  
-	/* Fix typewriterText here */
+	max-width: 280;
 }
 
 #profile-icon {
