@@ -198,6 +198,8 @@ a:hover {
 #profile-icon {
 	width: 350px;
 	border-radius: 50%;
+	padding-left: 50px; /* Adjust the value as needed */
+	padding-right: 50px; /* Adjust the value as needed */
 }
 
 .arrow {
