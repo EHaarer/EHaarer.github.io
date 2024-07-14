@@ -66,7 +66,7 @@ a:hover {
   }
   
   /* Media Query for smaller screens */
-  @media (max-width: 600px) { /* Adjust the max-width as needed */
+  @media (max-width: 1300px) { /* Adjust the max-width as needed */
 	.container.rowWork {
 	  flex-direction: column; /* Stack items vertically */
 	  align-items: center; /* Center items horizontally */
@@ -179,6 +179,8 @@ a:hover {
 	font-size: 350%;
 	margin-top: 5%;
 	margin-bottom: 2%;
+	padding-left: 30px; /* Adjust the value as needed */
+    padding-right: 30px; /* Adjust the value as needed */
 }
 
 .subtitle {
@@ -193,7 +195,7 @@ a:hover {
 }
 
 #profile-icon {
-	width: 250px;
+	width: 350px;
 	border-radius: 50%;
 }
 
