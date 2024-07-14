@@ -70,7 +70,6 @@ a:hover {
 	.container.rowWork {
 		flex-direction: column; /* Stack items vertically */
 		align-items: center; /* Center items horizontally */
-		opacity: 0; /* Start invisible */
 	}
   
 	.container.rowWork img {
