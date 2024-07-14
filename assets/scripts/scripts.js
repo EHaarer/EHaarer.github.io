@@ -97,6 +97,21 @@ function w3RemoveClass(element, name) {
   element.className = arr1.join(" ");
 }
 
+//Attempted code to make fade-in functional for fade-in class
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const observer = new IntersectionObserver((entries) => {
+//     entries.forEach(entry => {
+//       if (entry.isIntersecting) {
+//         entry.target.classList.add("fade-in");
+//       }
+//     });
+//   }, { threshold: 0.1 }); // Adjust threshold as needed
+
+//   const elements = document.querySelectorAll('.education, .work-experience'); // Use your actual class or ID selectors
+//   elements.forEach(el => observer.observe(el));
+// });
+
 // Add active class to the current button (highlight it)
 var btnContainer = document.getElementById("button-section");
 var btns = btnContainer.getElementsByClassName("filter-button");

@@ -68,8 +68,9 @@ a:hover {
   /* Media Query for smaller screens */
   @media (max-width: 1500px) { /* Adjust the max-width as needed */
 	.container.rowWork {
-	  flex-direction: column; /* Stack items vertically */
-	  align-items: center; /* Center items horizontally */
+		flex-direction: column; /* Stack items vertically */
+		align-items: center; /* Center items horizontally */
+		opacity: 0; /* Start invisible */
 	}
   
 	.container.rowWork img {
@@ -95,7 +96,20 @@ a:hover {
   img[src*="theHive.png"] {
 	width: 150px; /* Set the desired width */
 	height: 100px; /* Set the desired height */
+	margin-right: 20px;
 	object-fit: contain;
+  }
+
+  @keyframes fadeIn {
+	from { opacity: 0; }
+	to { opacity: 1; }
+  }
+  
+  .fade-in {
+	opacity: 0; /* Start invisible */
+	animation-name: fadeIn;
+	animation-duration: 1s; /* Adjust time as needed */
+	animation-fill-mode: forwards; /* Keeps the element visible after animation */
   }
 
 /*Code from GPT End*/
