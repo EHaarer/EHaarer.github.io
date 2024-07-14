@@ -97,8 +97,6 @@ function w3RemoveClass(element, name) {
   element.className = arr1.join(" ");
 }
 
-//Attempted code to make fade-in functional for fade-in class
-
 // document.addEventListener("DOMContentLoaded", () => {
 //   const observer = new IntersectionObserver((entries) => {
 //     entries.forEach(entry => {
