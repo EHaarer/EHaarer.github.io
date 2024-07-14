@@ -66,7 +66,7 @@ a:hover {
   }
   
   /* Media Query for smaller screens */
-  @media (max-width: 1500px) { /* Adjust the max-width as needed */
+  @media (max-width: 1000px) { /* Adjust the max-width as needed */
 	.container.rowWork {
 		flex-direction: column; /* Stack items vertically */
 		align-items: center; /* Center items horizontally */
@@ -95,6 +95,7 @@ a:hover {
   img[src*="theHive.png"] {
 	width: 150px; /* Set the desired width */
 	height: 100px; /* Set the desired height */
+	padding: 20px; /* Add some padding around the image */
 	object-fit: contain;
   }
 
