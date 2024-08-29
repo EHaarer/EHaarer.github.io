@@ -196,10 +196,11 @@
 							
 							<img src="assets/img/KPMGlogo.png">
 							<div class="container columnWork" id="school" style="width : 50vw">
-								<h2>Data Engineering Intern, KPMG</h2>
+								<h2>Software Engineering Intern, KPMG</h2>
 								<h3>June - August 2024</h3>
-								<li>Worked within MS Data Factory to work to change the provision of data from North America to a Global coverage</li>
-								<li>Developed new ELT pipelines to source transform and allocate data utilizing MS Azure services like Databricks, Data Factory, Data Lake</li>
+								<li>Integrated generative AI into software development lifecycle, integrating automatic optimizationand standardization into developers' workflow that saw a near 30% increase in developers' efficeny through streamlining development and vastly improving code readability</li>
+								<li>Oversaw optimization of FOT pipeline utilizing new optimization techniques and implemented major time complexity improvements in 30% of the codebase across thousands of lines of code form O(n<sup>2</sup>) to O(n log n) leading to a near 20% reduction in pipeline runtime</li>
+								<li>Researched potential modes to further integrate unit generation into SDLC to prioritize expanding code coverage of generated tests to streamline codebase improvement overhaul by integrating a complete end to end pipeline to automate SparkSQL to pySPARK conversion</li>
 								<li>Analyzed impact of Generative Ai in developpment of code and pipelines to determine the inherent benefit of services like chat GPT, CoPilot, and Databricks Ai in optimizing code and reducing overall company costs</li>
 							</div>
 							
@@ -214,7 +215,7 @@
 								<h2 >Enterprise Computing Intern, Homesteader's Life Co.</h2>
 								<h3>May - August 2022</h3>
 								<li>Developed and implemented an IT Asset Management system to reduce missing and orphaned assets, maximized useful life and ROI, providing greater insights into asset utilization, capacity management, maintenance expense, and asset depreciation</li>
-								<li>Reduced mean repair time by approximately 20% which led to an increase in ROI for over 1,300 assets</li>
+								<li>Reduced mean repair time by approximately 20% through Asset management system which maintatined accurate REST API to facilitate cross-organizational active updates to inventory and tracking, leading to an increase in ROI for over 1,300 assets</li>
 								<li>Developed data framework and integrated a new tracking system to manage asset ownership and forensic backlogging for IT and all departments; utilized Power BI and Postman</li>
 							</div>
 							
@@ -229,7 +230,9 @@
 							<div class="container columnWork" id="school" style="width : 50vw">
 								<h2 >Peer Instructor, The Hive @ Georgia Tech</h2>
 								<h3>January 2022 - May 2024</h3>
-								<li>Assist and instruct hundreds of electrical engineers in prototyping and configuring projects from ideation to engineering, fabrication, testing and deployment </li>
+								<li>Assist and instruct hundreds of electrical engineers in prototyping and configuring projects from ideation to engineering, fabrication, testing and deployment. Frequently focused on rapid integration into exisitng project goals and accomplishments to aid end user's in project development, troubleshooting and ad hoc solutions</li>
+								<li>Led and facilitated hands-on workshops for over 150 electrical engineering students, focusing on advanced circuit design, PCB fabrication, and prototyping techniques. These workshops not only enhanced the practical skill sets of the participants but also contributed to a 25% increase in project completion rates, as students were better equipped to translate theoretical concepts into tangible prototypes.</li>
+								<li>Optimized the use and maintenance of lab resources, resulting in a 15% reduction in equipment downtime and a 10% decrease in material waste, ensuring sustainable operation of the makerspace.</li>
 								<li>Certified in technical toolsincluding general EE tools such as waveform generators and oscilloscopes, PCB fabrication, 3D printing, Laser Cutting, and Soldering</li>
 							</div>
 							
@@ -279,16 +282,17 @@
 				Filter Buttons
 				<div class="contianer row" id="button-section">
 					<button class="filter-button active" onclick="filterSelection('all')">All</button>
+					<button class="filter-button" onclick="filterSelection('ML')">AI/ML</button>
 					<button class="filter-button" onclick="filterSelection('python')">Python</button>
-					<button class="filter-button" onclick="filterSelection('web')">Web Dev</button>
 					<button class="filter-button" onclick="filterSelection('C/C++')">C/C++</button>
+					<button class="filter-button" onclick="filterSelection('web')">Web Dev</button>
 				</div>
 
 				<!--Individual Projects-->
 				<!-- TODO: Add 2-3 more projects -->
 				<div class="container row" id="project-container">
 
-					<div class="each-project python">
+					<div class="each-project python ML">
 						<img class="proj-img" src="assets/img/PersonPredict.jpg"/>
 						<div class="proj-description container column">
 							<div class="img-description">
@@ -300,6 +304,38 @@
 							  <a href="https://github.com/EHaarer/Translating-Pedestrian-Indoor-Images-into-Maps" class="first-color">Github Repo</a>
 							  <br>
 							  <i>Written in Python with Google Collab</i>
+						  </div>
+						</div>
+					  </div>
+
+					  <div class="each-project python ML web">
+						<img class="proj-img" src="assets/img/inspirlogo.jpg"/>
+						<div class="proj-description container column">
+							<div class="img-description">
+							  <h2>Inspiration AI - DnD Generative AI</h2>
+							  <p>Website to help DnD enthusiasts generate new locations, characters, quests, and more utilizing DnD REST API, LLMs, and stable diffusion models</h3>
+							  <br>
+							  <a href="https://inspiration-ai.streamlit.app/" class="first-color">Alpha Build Website</a>
+							  <br>
+							  <a href="https://github.com/EHaarer/Inspir-Ai-tion_The_DnD_Generative_AI" class="first-color">Github Repo</a>
+							  <br>
+							  <i>Built in Python using Streamlit</i>
+						  </div>
+						</div>
+					  </div>
+
+					  <div class="each-project python C/C++ ML">
+						<img class="proj-img" src="assets/img/TAILCobweb.jpg"/>
+						<div class="proj-description container column">
+							<div class="img-description">
+							  <h2>Cobweb 3 LLM Optimization</h2>
+							  <p>Working within TAIL to optimize Cobweb, a clustering model which supports incremental concept learning from fewer examples. The model learns both structure and parameters where the structural expansion is dynamic.</h3>
+							  <br>
+							  <a href="https://tail.cc.gatech.edu/projects/cobweb.html" class="first-color">Link to Lab Page</a>
+							  <br>
+							  <a href="https://github.com/Teachable-AI-Lab/fast_cobweb" class="first-color">Github Repo</a>
+							  <br>
+							  <i>Built in C++ optimized with CUDA</i>
 						  </div>
 						</div>
 					  </div>

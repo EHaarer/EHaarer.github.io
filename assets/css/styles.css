@@ -56,7 +56,7 @@ a:hover {
 /* Initial Flexbox setup for larger screens */
 .container.rowWork {
 	display: flex;
-	align-items: center; /* Align items vertically in the center */
+	align-items: left; /* Align items vertically in the center */
 	justify-content: start; /* Align items to the start of the container */
   }
   
