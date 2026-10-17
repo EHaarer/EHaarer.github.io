@@ -49,7 +49,7 @@
       cv.style.height = '100%';
       cv.style.display = 'block';
       cv.style.cursor = 'grab';
-      cv.style.touchAction = 'none';
+      cv.style.touchAction = 'pan-y'; // touch: horizontal drags rotate, vertical swipes still scroll the page
       el.appendChild(cv);
 
       const group = new THREE.Group();
@@ -106,7 +106,7 @@
       ro.observe(el);
       resize();
 
-      let raf;
+      let raf, running = false;
       function tick() {
         raf = requestAnimationFrame(tick);
         if (dragging) {
@@ -119,13 +119,22 @@
         }
         renderer.render(scene, cam);
       }
-      tick();
+      // only animate while on screen: every project panel is open at once
+      const io = new IntersectionObserver(function (entries) {
+        if (entries[entries.length - 1].isIntersecting) {
+          if (!running) { running = true; tick(); }
+        } else {
+          running = false; cancelAnimationFrame(raf);
+        }
+      }, { rootMargin: '120px' });
+      io.observe(el);
 
       el.__dc = { renderer: renderer, scene: scene, cam: cam, group: group };
 
       this._cleanup = function () {
         cancelAnimationFrame(raf);
         ro.disconnect();
+        io.disconnect();
         scene.traverse(function (o) {
           if (o.geometry) o.geometry.dispose();
           if (o.material) o.material.dispose();

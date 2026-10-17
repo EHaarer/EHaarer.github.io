@@ -19,6 +19,7 @@
 <script src="_ds/neuro-symbolic-brutalist-design-system-cd710455-7b37-4c4d-9090-902b3407f6cb/_ds_bundle.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="assets/obj-wireframe.js"></script>
+<script src="assets/axis-globe.js"></script>
 <style>
   *{box-sizing:border-box}
   html{scroll-behavior:smooth;scroll-padding-top:56px}
@@ -33,22 +34,83 @@
   /* coral wire-texture in light mode: let the root invert flip black bg → white while
      hue-rotate preserves the coral lines; just raise opacity for foreground contrast */
   .nsb-light .nsb-matrix{opacity:0.48!important;filter:saturate(0.8)!important}
+  /* RESPONSIVE — layout lives in inline styles, so narrow-screen overrides need !important */
+  /* "HAARER" is ~7em wide in Syne 800: size it from the 65% hero column so it never spills */
+  .eh-h1{font-size:clamp(40px,calc(9.3vw - 12px),108px)!important}
+  /* paper images have fixed pixel widths; let the columns shrink and the image boxes crop them */
+  .eh-papers{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  @media (max-width:1079px){
+    /* three paper columns are too narrow for the long title words below ~1080px */
+    .eh-papers{grid-template-columns:minmax(0,1fr)!important}
+  }
+  @media (min-width:761px) and (max-width:1079px){
+    .eh-paper{flex-direction:row!important}
+    .eh-paper>div:first-child{flex:0 0 38%;height:auto!important;min-height:220px;border-bottom:none!important;border-right:1px solid rgba(255,69,0,0.35)}
+  }
+  @media (max-width:1024px){
+    .eh-work-head,.eh-work-row{grid-template-columns:66px 200px 1fr 130px!important}
+    .eh-w-logo img{max-width:100%!important}
+  }
+  @media (max-width:760px){
+    .eh-nav{padding:0 14px!important}
+    .eh-logo{font-size:13px!important;gap:8px!important}
+    .eh-navlinks{gap:0!important}
+    .eh-navlinks a{padding:8px 5px!important}
+    .eh-wide{display:none!important}
+    .eh-theme{margin-left:6px!important;padding:7px 9px!important}
+    .eh-bar{flex-wrap:wrap;gap:6px 16px}
+    .eh-h1{font-size:clamp(36px,calc(14vw - 6px),72px)!important}
+    .eh-h2{font-size:clamp(22px,7vw,40px)!important}
+    .eh-chan{flex-wrap:wrap}
+    .eh-chan h2{font-size:clamp(26px,8vw,40px)!important}
+    .eh-hero,.eh-edu,.eh-papers,.eh-proj,.eh-term{grid-template-columns:minmax(0,1fr)!important}
+    .eh-hero-main{padding:36px 18px 32px!important;border-right:none!important}
+    .eh-hero-fig{border-top:1px solid rgba(255,69,0,0.35)}
+    .eh-hero-figbox{min-height:300px!important}
+    /* work table → stacked cards: index + dates, then logo, then description */
+    .eh-work-head{display:none!important}
+    .eh-work-row{grid-template-columns:auto minmax(0,1fr)!important;grid-template-areas:"idx time" "logo logo" "body body"}
+    .eh-w-idx{grid-area:idx;padding:18px 16px 0!important}
+    .eh-w-time{grid-area:time;padding:18px 16px 0!important}
+    .eh-w-logo{grid-area:logo;justify-content:flex-start!important;padding:14px 16px 0!important}
+    .eh-w-logo img{max-width:180px!important;max-height:60px!important}
+    .eh-w-body{grid-area:body;padding:12px 16px 22px!important}
+    /* projects → media above text */
+    .eh-proj-row{gap:10px!important;padding:14px!important}
+    .eh-proj-sep,.eh-proj-class{display:none!important}
+    .eh-proj-media{border-right:none!important;border-bottom:1px solid rgba(255,69,0,0.35);min-height:280px!important}
+    .eh-proj-3d{min-height:340px!important}
+    .eh-proj-globe{min-height:420px!important}
+    .eh-proj-auto{min-height:0!important}
+    .eh-proj-body{padding:18px 16px 24px!important}
+    .eh-term-cell{padding:28px 18px 32px!important}
+    .eh-node{grid-template-columns:14px 84px minmax(0,1fr) 14px!important;gap:10px!important}
+  }
+  @media (max-width:400px){
+    .eh-proj-code{display:none!important}
+    .eh-proj-title{font-size:15px!important;min-width:0;overflow-wrap:anywhere}
+    .eh-paper-title{font-size:19px!important}
+    .eh-paper-title,.eh-proj-h3{overflow-wrap:anywhere}
+  }
+  @media (max-width:359px){
+    .eh-navlinks a{display:none!important}
+  }
 </style>
 </helmet>
 
 <div class="{{ rootClass }}" style="background:#0C0C0E;min-height:100vh;filter:invert(0) hue-rotate(0deg);transition:filter 200ms ease">
 
   <!-- NAV -->
-  <nav style="position:sticky;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 20px;background:rgba(12,12,14,0.92);backdrop-filter:blur(2px);border-bottom:2px solid #FF4500">
-    <a href="#sec01" style="display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:800;letter-spacing:-0.02em;text-transform:uppercase;font-size:16px;color:var(--bone-white)">
+  <nav class="eh-nav" style="position:sticky;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 20px;background:rgba(12,12,14,0.92);backdrop-filter:blur(2px);border-bottom:2px solid #FF4500">
+    <a class="eh-logo" href="#sec01" style="display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:800;letter-spacing:-0.02em;text-transform:uppercase;font-size:16px;color:var(--bone-white)">
       <span aria-hidden="true" style="position: relative; display: inline-block; width: 10px; height: 10px; color: rgb(255, 69, 0);"><span style="position: absolute; left: 50%; top: 0px; width: 1px; height: 100%; background: currentcolor; transform: translateX(-0.5px);"></span><span style="position: absolute; top: 50%; left: 0px; height: 1px; width: 100%; background: currentcolor; transform: translateY(-0.5px);"></span></span>PORTFOLIO</a>
-    <div style="display:flex;align-items:center;gap:4px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase">
-      <a href="#sec01" style="padding:8px 12px;color:var(--text-muted);transition:color 90ms" style-hover="color:#FF4500">01·MATRIX</a>
-      <a href="#sec02" style="padding:8px 12px;color:var(--text-muted);transition:color 90ms" style-hover="color:#FF4500">02·REPOS</a>
-      <a href="#sec03" style="padding:8px 12px;color:var(--text-muted);transition:color 90ms" style-hover="color:#FF4500">03·INDEX</a>
-      <a href="#sec04" style="padding:8px 12px;color:var(--text-muted);transition:color 90ms" style-hover="color:#FF4500">04·TERMINAL</a>
-      <button onClick="{{ toggleTheme }}" aria-pressed="{{ light }}" style="margin-left:10px;display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#FF4500;background:transparent;border:1px solid #FF4500;padding:7px 11px;cursor:crosshair;transition:background 90ms,color 90ms" style-hover="background:#FF4500;color:#0C0C0E">
-        <span aria-hidden="true" style="position:relative;display:inline-block;width:9px;height:9px"><span style="position:absolute;left:50%;top:0;width:1px;height:100%;background:currentColor;transform:translateX(-0.5px)"></span><span style="position:absolute;top:50%;left:0;height:1px;width:100%;background:currentColor;transform:translateY(-0.5px)"></span></span>{{ themeLabel }}</button>
+    <div class="eh-navlinks" style="display:flex;align-items:center;gap:4px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase">
+      <a href="#sec01" style="padding:8px 12px;color:var(--text-muted);transition:color 90ms" style-hover="color:#FF4500">01<span class="eh-wide">·MATRIX</span></a>
+      <a href="#sec02" style="padding:8px 12px;color:var(--text-muted);transition:color 90ms" style-hover="color:#FF4500">02<span class="eh-wide">·REPOS</span></a>
+      <a href="#sec03" style="padding:8px 12px;color:var(--text-muted);transition:color 90ms" style-hover="color:#FF4500">03<span class="eh-wide">·INDEX</span></a>
+      <a href="#sec04" style="padding:8px 12px;color:var(--text-muted);transition:color 90ms" style-hover="color:#FF4500">04<span class="eh-wide">·TERMINAL</span></a>
+      <button class="eh-theme" onClick="{{ toggleTheme }}" aria-pressed="{{ light }}" aria-label="{{ themeLabel }}" style="margin-left:10px;display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#FF4500;background:transparent;border:1px solid #FF4500;padding:7px 11px;cursor:crosshair;transition:background 90ms,color 90ms" style-hover="background:#FF4500;color:#0C0C0E">
+        <span aria-hidden="true" style="position:relative;display:inline-block;width:9px;height:9px"><span style="position:absolute;left:50%;top:0;width:1px;height:100%;background:currentColor;transform:translateX(-0.5px)"></span><span style="position:absolute;top:50%;left:0;height:1px;width:100%;background:currentColor;transform:translateY(-0.5px)"></span></span><span>{{ themeWord }}<span class="eh-wide">&nbsp;MODE</span></span></button>
     </div>
   </nav>
 
@@ -57,23 +119,23 @@
 
     <!-- ===================== SECTION 01 — COGNITIVE MATRIX ===================== -->
     <section id="sec01" data-screen-label="01 · Cognitive Matrix" style="position:relative;border-bottom:2px solid #FF4500;background-image:linear-gradient(rgba(220,220,207,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(220,220,207,0.05) 1px,transparent 1px);background-size:40px 40px">
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:1px solid rgba(255,69,0,0.35);font-family:var(--font-mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-faint)">
+      <div class="eh-bar" style="display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:1px solid rgba(255,69,0,0.35);font-family:var(--font-mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-faint)">
         <span style="color:#FF4500">01. SEC_REF // COGNITIVE_MATRIX</span>
         <span>MEM_ALLOC: OK &nbsp;·&nbsp; UPTIME 99.98% &nbsp;·&nbsp; boot.seq nominal<span style="color:#FF4500;animation:nsbBlink 1s steps(1) infinite">_</span></span>
       </div>
-      <div style="display:grid;grid-template-columns:65fr 35fr">
+      <div class="eh-hero" style="display:grid;grid-template-columns:65fr 35fr">
         <!-- LEFT 65% -->
-        <div style="padding:56px 40px 48px;border-right:1px solid rgba(255,69,0,0.35)">
+        <div class="eh-hero-main" style="padding:56px 40px 48px;border-right:1px solid rgba(255,69,0,0.35)">
           <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:22px">[ MACHINE LEARNING RESEARCHER ]</div>
-          <h1 style="margin:0;font-family:var(--font-display);font-weight:800;line-height:0.86;letter-spacing:-0.04em;text-transform:uppercase;font-size:clamp(52px,8.5vw,116px);color:var(--bone-white)">
+          <h1 class="eh-h1" style="margin:0;font-family:var(--font-display);font-weight:800;line-height:0.86;letter-spacing:-0.04em;text-transform:uppercase;font-size:clamp(52px,8.5vw,116px);color:var(--bone-white)">
             ETHAN<br><span style="color:transparent;-webkit-text-stroke:2px #FF4500">HAARER</span>
           </h1>
           <div style="margin-top:22px;font-family:var(--font-mono);font-size:13px;letter-spacing:0.08em;color:#FF4500;text-transform:uppercase;border-top:1px solid rgba(255,69,0,0.4);border-bottom:1px solid rgba(255,69,0,0.4);padding:12px 0">SYS.REF // COGNITIVE-INSPIRED ARCHITECTURES</div>
           <p style="margin:26px 0 0;max-width:56ch;font-family:var(--font-mono);font-size:14px;line-height:1.65;color:var(--bone-white)">
             I am currently a&nbsp;<span style="color: rgb(255, 69, 0);">Founding Engineer</span>&nbsp;at a [STEALTH STARTUP] where I predominately develop cognitive-inspired ML systems. Our research predominantly revolves around&nbsp;<span style="color: rgb(255, 69, 0);">Representation Learning</span>, <font color="#ff4500">Novel ML Algorithms</font>, and&nbsp;<span style="color: rgb(255, 69, 0);">Mechanistic Interpretability</span>.</p>
-          <p style="margin: 16px 0 0; max-width: 56ch; font-family: var(--font-mono); font-size: 13px; line-height: 1.65; color: var(--text-muted); width: 440px; height: 152px">My research Interests lie in Neuro-Symbolic AI, specifically in cognitive-inspired systems that learn continuously from few examples, grow their own concept hierarchies the way people do, and stay explainable and interpretable at every layer.&nbsp;<br>I also enjoy deploying Edge AI to see how far we can push local compute to aid those in the field.</p>
+          <p style="margin: 16px 0 0; max-width: 56ch; font-family: var(--font-mono); font-size: 13px; line-height: 1.65; color: var(--text-muted)">My research Interests lie in Neuro-Symbolic AI, specifically in cognitive-inspired systems that learn continuously from few examples, grow their own concept hierarchies the way people do, and stay explainable and interpretable at every layer.&nbsp;<br>I also enjoy deploying Edge AI to see how far we can push local compute to aid those in the field.</p>
           <!-- education telemetry -->
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:36px;border:1px solid rgba(220,220,207,0.18);background:rgba(220,220,207,0.18)">
+          <div class="eh-edu" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:36px;border:1px solid rgba(220,220,207,0.18);background:rgba(220,220,207,0.18)">
             <div style="background:#0C0C0E;padding:16px 18px">
               <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted)">EDU_NODE · 01</div>
               <div style="font-family:var(--font-display);font-weight:800;font-size:20px;letter-spacing:-0.01em;text-transform:uppercase;color:var(--bone-white);margin-top:8px;line-height:1">M.S. COMPUTER SCIENCE</div>
@@ -87,11 +149,11 @@
           </div>
         </div>
         <!-- RIGHT 35% -->
-        <div style="position:relative;display:flex;flex-direction:column">
+        <div class="eh-hero-fig" style="position:relative;display:flex;flex-direction:column">
           <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid rgba(255,69,0,0.35);font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-faint)">
             <span>FIG.01 — COGNITIVE MESH</span><span style="color:#FF4500">R · MAPPED</span>
           </div>
-          <div style="position:relative;flex:1;min-height:420px;background:#0C0C0E;background-image:radial-gradient(rgba(255,69,0,0.10) 0.8px,transparent 1px);background-size:14px 14px;display:flex;align-items:center;justify-content:center;overflow:hidden">
+          <div class="eh-hero-figbox" style="position:relative;flex:1;min-height:420px;background:#0C0C0E;background-image:radial-gradient(rgba(255,69,0,0.10) 0.8px,transparent 1px);background-size:14px 14px;display:flex;align-items:center;justify-content:center;overflow:hidden">
             <img src="assets/img/hero-figure-coral.png" alt="Human figure bound within a spherical coordinate graph" style="width:112%;max-width:none;filter:drop-shadow(0 0 12px rgba(255,69,0,0.35))">
           </div>
           <div style="padding:12px 14px;border-top:1px solid rgba(255,69,0,0.35);font-family:var(--font-mono);font-size:9px;line-height:1.7;letter-spacing:0.06em;color:var(--text-muted)">
@@ -112,19 +174,19 @@
           </div>
           <span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-faint)">N = 003 FEATURED</span>
         </div>
-        <h2 style="margin:14px 0 0;font-family:var(--font-display);font-weight:800;font-size:clamp(40px,5.5vw,72px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;color:var(--bone-white)">Research <span style="color:transparent;-webkit-text-stroke:1.5px #FF4500">Publications</span></h2>
+        <h2 class="eh-h2" style="margin:14px 0 0;font-family:var(--font-display);font-weight:800;font-size:clamp(40px,5.5vw,72px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;color:var(--bone-white)">Research <span style="color:transparent;-webkit-text-stroke:1.5px #FF4500">Publications</span></h2>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(255,69,0,0.35)">
+      <div class="eh-papers" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(255,69,0,0.35)">
 
         <!-- PAPER 01 -->
-        <article style="background:#0C0C0E;display:flex;flex-direction:column">
+        <article class="eh-paper" style="background:#0C0C0E;display:flex;flex-direction:column">
           <div style="position: relative; height: 200px; border-bottom: 1px solid rgba(255,69,0,0.35); display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #000000">
             <img src="./deeptaxonnet-mr8l4x41.png" class="nsb-flip" alt="Warped concentric gradient grid" style="width: 404px; height: 222px; object-fit: cover; filter: grayscale(1) contrast(1.35) brightness(1.05)">
             <span style="position:absolute;top:8px;left:10px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;color:#FF4500">[ P·01 ]</span>
           </div>
           <div style="padding:20px 18px 22px;display:flex;flex-direction:column;flex:1">
             <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted)">UNSUPERVISED · LATENT_REP · EMERGENT</div>
-            <h3 style="margin:12px 0 0;font-family:var(--font-display);font-weight:800;font-size:22px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;color:var(--bone-white)">Deep Taxonomic Networks for Unsupervised Hierarchical Prototype Discovery</h3>
+            <h3 class="eh-paper-title" style="margin:12px 0 0;font-family:var(--font-display);font-weight:800;font-size:22px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;color:var(--bone-white)">Deep Taxonomic Networks for Unsupervised Hierarchical Prototype Discovery</h3>
             <p style="margin:14px 0 0;font-family:var(--font-mono);font-size:11px;line-height:1.6;color:var(--text-muted)">A deep latent-variable approach that optimizes a large latent hierarchy to automatically discover taxonomic structure and prototype clusters directly from unlabeled data; statistical optimization walking a gradient space toward emergent topology.</p>
             <div style="display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 18px">
               <span style="font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 7px;border:1px solid rgba(220,220,207,0.35);color:var(--text-muted)">VAE</span>
@@ -136,14 +198,14 @@
         </article>
 
         <!-- PAPER 02 -->
-        <article style="background:#0C0C0E;display:flex;flex-direction:column">
+        <article class="eh-paper" style="background:#0C0C0E;display:flex;flex-direction:column">
           <div style="position: relative; border-bottom: 1px solid rgba(255,69,0,0.35); display: flex; align-items: center; justify-content: center; overflow: hidden; height: 200px; background-color: var(--carbon-black)">
             <img src="./neurosympaperimage-modified-mr8lhuo8.png" class="nsb-flip" alt="Upward hyperbolic cone wireframe" style="object-fit: cover; height: 224px; width: 317px">
             <span style="position:absolute;top:8px;left:10px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;color:#FF4500">[ P·02 ]</span>
           </div>
           <div style="padding:20px 18px 22px;display:flex;flex-direction:column;flex:1">
             <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted)">NEURO-SYMBOLIC · INTERPRETABLE · KNOWLEDGE_REP</div>
-            <h3 style="margin:12px 0 0;font-family:var(--font-display);font-weight:800;font-size:22px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;color:var(--bone-white)">Taxonomic Networks: A Representation for Neuro-Symbolic Pairing</h3>
+            <h3 class="eh-paper-title" style="margin:12px 0 0;font-family:var(--font-display);font-weight:800;font-size:22px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;color:var(--bone-white)">Taxonomic Networks: A Representation for Neuro-Symbolic Pairing</h3>
             <p style="margin:14px 0 0;font-family:var(--font-mono);font-size:11px;line-height:1.6;color:var(--text-muted)">Frames taxonomic networks as the shared representation that pairs connectionist learning with symbolic structure: top-down symbol instantiation and discrete knowledge routing over a learned abstraction tree that stays inspectable.</p>
             <div style="display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 18px">
               <span style="font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 7px;border:1px solid rgba(220,220,207,0.35);color:var(--text-muted)">Symbolic</span>
@@ -155,14 +217,14 @@
         </article>
 
         <!-- PAPER 03 -->
-        <article style="background:#0C0C0E;display:flex;flex-direction:column">
+        <article class="eh-paper" style="background:#0C0C0E;display:flex;flex-direction:column">
           <div style="position: relative; height: 200px; border-bottom: 1px solid rgba(255,69,0,0.35); display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #000000">
             <img src="./crossculttypicalitypaper-mr8lld72.png" class="nsb-flip" alt="Twin-hemisphere wireframe sphere" style="width: 345px; object-fit: contain; height: 413px">
             <span style="position:absolute;top:8px;left:10px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;color:#FF4500">[ P·03 ]</span>
           </div>
           <div style="padding:20px 18px 22px;display:flex;flex-direction:column;flex:1">
             <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted)">COGNITIVE · ALIGNMENT · MULTILINGUAL</div>
-            <h3 style="margin:12px 0 0;font-family:var(--font-display);font-weight:800;font-size:22px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;color:var(--bone-white)">Cross-Language Typicality Effects in a Multilingual Large Language Model</h3>
+            <h3 class="eh-paper-title" style="margin:12px 0 0;font-family:var(--font-display);font-weight:800;font-size:22px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;color:var(--bone-white)">Cross-Language Typicality Effects in a Multilingual Large Language Model</h3>
             <p style="margin:14px 0 0;font-family:var(--font-mono);font-size:11px;line-height:1.6;color:var(--text-muted)">Tests whether GPT-4o aligns with human typicality norms across five languages, probing the synchronization of statistical neural maps with the structured, human-like conceptual frameworks they must mirror.<br><br></p>
             <div style="display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 18px">
               <span style="font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 7px;border:1px solid rgba(220,220,207,0.35);color:var(--text-muted)">GPT-4o</span>
@@ -180,33 +242,33 @@
       <img src="assets/img/sec3-matrix-coral.png" class="nsb-matrix" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.15;pointer-events:none">
       <div style="position:relative">
         <div style="padding:26px 20px 24px;border-bottom:2px solid #FF4500;background:rgba(12,12,14,0.6)">
-          <div style="display:flex;align-items:center;justify-content:space-between">
+          <div class="eh-bar" style="display:flex;align-items:center;justify-content:space-between">
             <div style="display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--bone-white)">
               <span style="color:#FF4500;font-weight:700">[03.SEC_REF]</span><span>// CAREER TIMELINE</span>
             </div>
             <span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-faint)">N = 003 · deployment log</span>
           </div>
-          <h2 style="margin:14px 0 0;font-family:var(--font-display);font-weight:800;font-size:clamp(40px,5.5vw,72px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;color:var(--bone-white)">Work <span style="color:transparent;-webkit-text-stroke:1.5px #FF4500">Experience</span></h2>
+          <h2 class="eh-h2" style="margin:14px 0 0;font-family:var(--font-display);font-weight:800;font-size:clamp(40px,5.5vw,72px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;color:var(--bone-white)">Work <span style="color:transparent;-webkit-text-stroke:1.5px #FF4500">Experience</span></h2>
         </div>
         <!-- column header -->
-        <div style="display:grid;grid-template-columns:70px 290px 1fr 160px;background:rgba(12,12,14,0.55);border-bottom:2px solid #FF4500;font-family:var(--font-mono);font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted)">
+        <div class="eh-work-head" style="display:grid;grid-template-columns:70px 290px 1fr 160px;background:rgba(12,12,14,0.55);border-bottom:2px solid #FF4500;font-family:var(--font-mono);font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted)">
           <div style="padding:10px 14px">[INDEX]</div>
           <div style="padding:10px 14px">[ORG]</div>
           <div style="padding:10px 14px">[IDENTIFIER / DESCRIPTION]</div>
           <div style="padding:10px 14px">[TIMEFRAME]</div>
         </div>
         <sc-for list="{{ workRows }}" as="r" hint-placeholder-count="3">
-          <div style="display:grid;grid-template-columns:70px 290px 1fr 160px;align-items:center;border-bottom:1px solid #FF4500;color:var(--bone-white);background:rgba(12,12,14,0.35);transition:background 90ms" style-hover="background:#FF4500;color:#0C0C0E">
-            <div style="padding:26px 14px;font-family:var(--font-mono);font-size:13px;font-weight:700;color:inherit">{{ r.idx }}</div>
-            <div style="padding: 20px 14px; display: flex; align-items: center; justify-content: center">
+          <div class="eh-work-row" style="display:grid;grid-template-columns:70px 290px 1fr 160px;align-items:center;border-bottom:1px solid #FF4500;color:var(--bone-white);background:rgba(12,12,14,0.35);transition:background 90ms" style-hover="background:#FF4500;color:#0C0C0E">
+            <div class="eh-w-idx" style="padding:26px 14px;font-family:var(--font-mono);font-size:13px;font-weight:700;color:inherit">{{ r.idx }}</div>
+            <div class="eh-w-logo" style="padding: 20px 14px; display: flex; align-items: center; justify-content: center">
               <img src="{{ r.logo }}" alt="" style="max-width: 246px; max-height: 81px; object-fit: contain; object-position: left center">
             </div>
-            <div style="padding:24px 14px;color:inherit">
+            <div class="eh-w-body" style="padding:24px 14px;color:inherit">
               <div style="font-family:var(--font-display);font-weight:800;font-size:18px;letter-spacing:-0.01em;text-transform:uppercase;line-height:1.05;color:inherit">{{ r.title }}</div>
               <div style="font-family:var(--font-mono);font-size:11px;line-height:1.65;color:inherit;opacity:0.72;margin-top:8px;max-width:72ch">{{ r.desc }}</div>
               <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:inherit;opacity:0.55;margin-top:10px">{{ r.meta }}</div>
             </div>
-            <div style="padding: 26px 14px; font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.5; color: inherit; text-align: right">{{ r.time }}</div>
+            <div class="eh-w-time" style="padding: 26px 14px; font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.5; color: inherit; text-align: right">{{ r.time }}</div>
           </div>
         </sc-for>
       </div>
@@ -215,45 +277,53 @@
     <!-- ===================== SECTION 3B — PROJECTS CONSOLE ===================== -->
     <section id="sec03b" data-screen-label="03B · Projects Console" style="position:relative;border-bottom:2px solid #FF4500;background:#0C0C0E">
       <div style="padding:26px 20px 24px;border-bottom:2px solid #FF4500;background:rgba(12,12,14,0.6)">
-        <div style="display:flex;align-items:center;justify-content:space-between">
+        <div class="eh-bar" style="display:flex;align-items:center;justify-content:space-between">
           <div style="display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--bone-white)">
             <span style="color:#FF4500;font-weight:700">[03B.SEC_REF]</span><span>// EXPANSIBLE_REPOSITORY</span>
           </div>
-          <span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-faint)">N = 007 · CLICK ROW TO EXTRACT [ + ]</span>
+          <span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-faint)">N = 008 · CLICK ROW TO TOGGLE [ ± ]</span>
         </div>
-        <h2 style="margin:14px 0 0;font-family:var(--font-display);font-weight:800;font-size:clamp(40px,5.5vw,72px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;color:var(--bone-white)">Projects <span style="color:transparent;-webkit-text-stroke:1.5px #FF4500">Showcase</span></h2>
+        <h2 class="eh-h2" style="margin:14px 0 0;font-family:var(--font-display);font-weight:800;font-size:clamp(40px,5.5vw,72px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;color:var(--bone-white)">Projects <span style="color:transparent;-webkit-text-stroke:1.5px #FF4500">Showcase</span></h2>
       </div>
 
       <sc-for list="{{ projectRows }}" as="r" hint-placeholder-count="6">
         <div>
           <!-- COMPRESSED DATA ROW (toggle) -->
-          <button onClick="{{ r.onToggle }}" aria-expanded="{{ r.expanded }}" style="width:100%;text-align:left;background:transparent;border:none;border-bottom:1px solid #FF4500;color:#FF4500;font-family:var(--font-mono);display:flex;align-items:center;gap:14px;padding:15px 18px;cursor:crosshair" style-hover="background:#FF4500;color:#0C0C0E">
+          <button class="eh-proj-row" onClick="{{ r.onToggle }}" aria-expanded="{{ r.expanded }}" style="width:100%;text-align:left;background:transparent;border:none;border-bottom:1px solid #FF4500;color:#FF4500;font-family:var(--font-mono);display:flex;align-items:center;gap:14px;padding:15px 18px;cursor:crosshair" style-hover="background:#FF4500;color:#0C0C0E">
             <span style="flex:0 0 auto;font-size:13px;font-weight:700;color:inherit;width:20px;text-align:center">[{{ r.sign }}]</span>
-            <span style="flex:0 0 auto;font-size:11px;font-weight:700;letter-spacing:0.12em;color:inherit">{{ r.code }}</span>
-            <span style="flex:0 0 auto;font-size:11px;color:inherit;opacity:0.5">//</span>
-            <span style="flex: 1 1 auto; font-family: var(--font-display); font-weight: 800; font-size: 16px; letter-spacing: -0.01em; text-transform: uppercase; line-height: 1.05; color: var(--bone-white)">{{ r.title }}</span>
-            <span style="flex:0 0 auto;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:inherit;opacity:0.7">{{ r.classRef }}</span>
+            <span class="eh-proj-code" style="flex:0 0 auto;font-size:11px;font-weight:700;letter-spacing:0.12em;color:inherit">{{ r.code }}</span>
+            <span class="eh-proj-sep" style="flex:0 0 auto;font-size:11px;color:inherit;opacity:0.5">//</span>
+            <span class="eh-proj-title" style="flex: 1 1 auto; font-family: var(--font-display); font-weight: 800; font-size: 16px; letter-spacing: -0.01em; text-transform: uppercase; line-height: 1.05; color: var(--bone-white)">{{ r.title }}</span>
+            <span class="eh-proj-class" style="flex:0 0 auto;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:inherit;opacity:0.7">{{ r.classRef }}</span>
           </button>
 
           <!-- EXPANDED PANEL -->
           <sc-if value="{{ r.expanded }}" hint-placeholder-val="{{ false }}">
-            <div style="display:grid;grid-template-columns:1fr 2fr;border-bottom:2px solid #FF4500;background:#111115">
+            <div class="eh-proj" style="display:grid;grid-template-columns:1fr 2fr;border-bottom:2px solid #FF4500;background:#111115">
               <!-- LEFT · VECTOR CONTAINER -->
               <sc-if value="{{ r.isImg }}" hint-placeholder-val="{{ true }}">
-                <div style="position:relative;display:flex;align-items:center;justify-content:center;padding:10px;border-right:1px solid rgba(255,69,0,0.35);background:#0C0C0E;background-image:radial-gradient(rgba(255,69,0,0.10) 0.8px,transparent 1px);background-size:14px 14px;min-height:240px;overflow:hidden">
+                <div class="eh-proj-media" style="position:relative;display:flex;align-items:center;justify-content:center;padding:10px;border-right:1px solid rgba(255,69,0,0.35);background:#0C0C0E;background-image:radial-gradient(rgba(255,69,0,0.10) 0.8px,transparent 1px);background-size:14px 14px;min-height:240px;overflow:hidden">
                   <img src="{{ r.img }}" alt="{{ r.title }}" style="position:absolute;inset:10px;width:calc(100% - 20px);height:calc(100% - 20px);object-fit:contain;background-color:transparent;filter:{{ r.imgGlow }}">
                 </div>
               </sc-if>
               <!-- LEFT · INTERACTIVE WIREFRAME SCENE -->
               <sc-if value="{{ r.isObj }}" hint-placeholder-val="{{ false }}">
-                <div style="position:relative;border-right:1px solid rgba(255,69,0,0.35);background:#0C0C0E;background-image:radial-gradient(rgba(255,69,0,0.10) 0.8px,transparent 1px);background-size:14px 14px;min-height:240px;overflow:hidden">
+                <div class="eh-proj-media eh-proj-3d" style="position:relative;border-right:1px solid rgba(255,69,0,0.35);background:#0C0C0E;background-image:radial-gradient(rgba(255,69,0,0.10) 0.8px,transparent 1px);background-size:14px 14px;min-height:240px;overflow:hidden">
                   <span style="position:absolute;top:8px;left:10px;z-index:2;font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-faint);pointer-events:none">FIG · MESH_XZ</span>
                   <span style="position:absolute;top:8px;right:10px;z-index:2;font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#FF4500;pointer-events:none">DRAG · ORBIT</span>
                   <x-import component-from-global-scope="obj-wireframe" src="{{ r.model }}" color="#FF4500" model-rot-x="{{ r.modelRotX }}" model-rot-z="{{ r.modelRotZ }}" hint-size="100%,100%" style="position:absolute;inset:10px;width:calc(100% - 20px);height:calc(100% - 20px)"></x-import>
                 </div>
               </sc-if>
+              <!-- LEFT · FROZEN GLOBE SNAPSHOT (solid 3D, drag to orbit) -->
+              <sc-if value="{{ r.isGlobe }}" hint-placeholder-val="{{ false }}">
+                <div class="eh-proj-media eh-proj-3d eh-proj-globe" style="position:relative;border-right:1px solid rgba(255,69,0,0.35);background:#07080A;min-height:240px;overflow:hidden">
+                  <span style="position:absolute;top:8px;left:10px;z-index:2;font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-faint);pointer-events:none">FIG · FROZEN_FRAME</span>
+                  <span style="position:absolute;top:8px;right:10px;z-index:2;font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#FF4500;pointer-events:none">DRAG · ORBIT</span>
+                  <x-import component-from-global-scope="axis-globe" src="{{ r.snapshot }}" basemap="{{ r.basemap }}" hint-size="100%,100%" style="position:absolute;inset:0;width:100%;height:100%"></x-import>
+                </div>
+              </sc-if>
               <sc-if value="{{ r.isVideo }}" hint-placeholder-val="{{ false }}">
-                <div style="display:flex;flex-direction:column;border-right:1px solid rgba(255,69,0,0.35);background:#0C0C0E">
+                <div class="eh-proj-media eh-proj-auto" style="display:flex;flex-direction:column;border-right:1px solid rgba(255,69,0,0.35);background:#0C0C0E">
                   <!-- FIG.A · TREATED VIDEO -->
                   <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-bottom:1px solid rgba(255,69,0,0.35);font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-faint)">
                     <span>{{ r.figA }}</span><span style="color:#FF4500">● LIVE_LOOP</span>
@@ -273,9 +343,9 @@
                 </div>
               </sc-if>
               <!-- RIGHT · METADATA -->
-              <div style="padding:18px 28px 20px">
+              <div class="eh-proj-body" style="padding:18px 28px 20px">
                 <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-faint)">TITLE</div>
-                <h3 style="margin:6px 0 0;font-family:var(--font-display);font-weight:800;font-size:clamp(20px,2.4vw,30px);line-height:0.98;letter-spacing:-0.02em;text-transform:uppercase;color:var(--bone-white)">{{ r.title }}</h3>
+                <h3 class="eh-proj-h3" style="margin:6px 0 0;font-family:var(--font-display);font-weight:800;font-size:clamp(20px,2.4vw,30px);line-height:0.98;letter-spacing:-0.02em;text-transform:uppercase;color:var(--bone-white)">{{ r.title }}</h3>
 
                 <div style="display:flex;flex-wrap:wrap;gap:18px;margin-top:12px;padding:10px 0;border-top:1px solid rgba(255,69,0,0.35);border-bottom:1px solid rgba(255,69,0,0.35)">
                   <div><span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-faint)">STATUS</span><div style="font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:0.06em;color:#FF4500;margin-top:4px">{{ r.status }}</div></div>
@@ -301,16 +371,16 @@
 
     <!-- ===================== SECTION 04 — ABSTRACTION TERMINAL ===================== -->
     <section id="sec04" data-screen-label="04 · Abstraction Terminal" style="border-bottom:2px solid #FF4500">
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:22px 20px;border-bottom:1px solid rgba(255,69,0,0.35)">
+      <div class="eh-bar" style="display:flex;align-items:center;justify-content:space-between;padding:22px 20px;border-bottom:1px solid rgba(255,69,0,0.35)">
         <div style="display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted)">
           <span style="color:#FF4500;font-weight:700">04.</span><span style="width:24px;height:1px;background:var(--border-strong)"></span><span>SEC_REF // ABSTRACTION_TERMINAL</span>
         </div>
         <span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-faint)">awaiting operator input</span>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;background:rgba(255,69,0,0.35);gap:1px">
+      <div class="eh-term" style="display:grid;grid-template-columns:1fr 1fr;background:rgba(255,69,0,0.35);gap:1px">
         <!-- LEFT: form -->
-        <div style="background:#0C0C0E;padding:36px 32px 40px">
-          <div style="display:flex;gap:18px;align-items:flex-start;margin-bottom:26px">
+        <div class="eh-term-cell" style="background:#0C0C0E;padding:36px 32px 40px">
+          <div class="eh-chan" style="display:flex;gap:18px;align-items:flex-start;margin-bottom:26px">
             <div style="width:88px;height:88px;flex:0 0 auto;position:relative;border:1px solid rgba(255,69,0,0.5);overflow:hidden;background:#0C0C0E">
               <img src="assets/img/contact-sink.jpg" class="nsb-flip nsb-sink" alt="Square gravity-sink wormhole" style="width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.4)">
               <span style="position:absolute;inset:0;background:#FF4500;mix-blend-mode:multiply"></span>
@@ -329,11 +399,11 @@
           </div>
         </div>
         <!-- RIGHT: nodes -->
-        <div style="background:#0C0C0E;padding:36px 32px 40px">
+        <div class="eh-term-cell" style="background:#0C0C0E;padding:36px 32px 40px">
           <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px">// DATA_NODES · EXTERNAL_INDICATORS</div>
           <div style="border-top:1px solid rgba(255,69,0,0.35)">
             <sc-for list="{{ nodes }}" as="n" hint-placeholder-count="6">
-              <a href="{{ n.href }}" target="_blank" style="display:grid;grid-template-columns:20px 108px 1fr 16px;align-items:center;gap:12px;padding:15px 4px;border-bottom:1px solid rgba(255,69,0,0.35);color:var(--bone-white);transition:color 90ms,padding 120ms" style-hover="color:#FF4500;padding-left:12px">
+              <a class="eh-node" href="{{ n.href }}" target="_blank" style="display:grid;grid-template-columns:20px 108px 1fr 16px;align-items:center;gap:12px;padding:15px 4px;border-bottom:1px solid rgba(255,69,0,0.35);color:var(--bone-white);transition:color 90ms,padding 120ms" style-hover="color:#FF4500;padding-left:12px">
                 <span aria-hidden="true" style="position:relative;display:inline-block;width:11px;height:11px;color:#FF4500"><span style="position:absolute;left:50%;top:0;width:1px;height:100%;background:currentColor;transform:translateX(-0.5px)"></span><span style="position:absolute;top:50%;left:0;height:1px;width:100%;background:currentColor;transform:translateY(-0.5px)"></span></span>
                 <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted)">{{ n.key }}</span>
                 <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.02em;color:inherit;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ n.val }}</span>
@@ -367,7 +437,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
 class Component extends DCLogic {
-  state = { open: {}, light: false };
+  state = { collapsed: {}, light: false };
   renderVals() {
     const light = !!this.state.light;
     const workRows = [
@@ -382,6 +452,11 @@ class Component extends DCLogic {
         meta: 'GENerativve AI · SPARK · ELT Pipelines · Databricks · MS Data Factory · SQL', logo: 'assets/img/logo-kpmg-coral.png', time: 'May – August 2024' },
     ];
     const projectSpecs = [
+      { title: 'Axis Mundi: \nLive OSINT Globe', status: 'PRIVATE_BETA', classRef: 'OSINT',
+        meta: 'TYPESCRIPT · REACT · CESIUMJS · HONO · SGP4 · WEB WORKERS · VERCEL EDGE',
+        desc: 'Axis Mundi is a live open-source-intelligence picture of the entire planet rendered on a single 3D globe. A caching Hono feed gateway fuses dozens of keyless public sources: ADS-B transponders for ~11,000 aircraft worldwide, AIS vessel beacons, the active satellite catalogue, seismographs, disaster alerts, satellite fire detections, weather radar and nearly 10,000 public traffic cameras. The CesiumJS + React client draws all of it as one monochrome operating picture of thin vector coastlines over a dot-matrix Earth, monospace telemetry, and colour only where it carries meaning. Orbits are propagated with SGP4 inside a Web Worker so thousands of satellites move without stalling the interface, and every aircraft is dead-reckoned between refreshes. On top sits an analyst console: an inspector for any contact, full flight paths with origin, destination and ETA, satellite pass predictions, area queries exported as GeoJSON, great-circle measurement, a live camera wall, and sensor optics that re-render the whole planet through NVG, FLIR and CRT filters. It ships as a passphrase-gated preview on Vercel\'s edge network. FIG · FROZEN_FRAME is a real snapshot of its air and orbital layers at a single instant, with each aircraft and low-orbit satellite rendered as a solid 3D model you can drag to orbit.',
+        media: 'globe', snapshot: 'assets/data/axis-mundi-snapshot.json', basemap: 'assets/data/earth-110m.json',
+        actions: [ { label: 'ACCESS_REPOSITORY', href: 'https://github.com/EHaarer/AxisMundi' }, { label: 'LAUNCH_LIVE_SITE', href: 'https://axis-mundi-self.vercel.app' } ] },
       { title: 'Waldo: \n Geospatial Inference via Multimodal Fine-Tuning', status: 'COMPLETE', classRef: 'GEO-ML',
         meta: 'PYTHON · VLM · LoRA · Modality Alignment',
         desc: 'This framework fine-tunes open-source vision-language models (Qwen-2-VL and InternVL) to perform precise geo-localization directly from global street-level imagery. By integrating a locatability-aware curriculum and a novel coordinate-span-weighted loss function, the architecture progressively trains on visually complex environments to predict exact continuous coordinates. At inference, the system employs Retrieval-Augmented Generation (RAG) to ground predictions using visual and geographic priors. Experimental evaluations reveal critical insights into the limitations of standard cross-entropy objectives for spatial mapping, offering a lightweight alternative to massive retrieval-only geolocation pipelines.',
@@ -430,15 +505,17 @@ class Component extends DCLogic {
         img: 'assets/img/proj-quench-coral.png',
         actions: [ { label: 'ACCESS_REPO', href: 'https://github.com/EHaarer' }, { label: 'SYSTEM_DEMO_VIDEO', href: '#' } ] },
     ];
-    const openSet = this.state.open || {};
+    // every project starts expanded; the set records rows the visitor has collapsed
+    const collapsedSet = this.state.collapsed || {};
     const projectRows = projectSpecs.map((p, i) => ({
       ...p,
       code: 'PROJ-' + String(i + 1).padStart(2, '0'),
       isVideo: p.media === 'video',
       isObj: p.media === 'obj',
+      isGlobe: p.media === 'globe',
       modelRotX: p.modelRotX || 0,
       modelRotZ: p.modelRotZ || 0,
-      isImg: p.media !== 'video' && p.media !== 'obj',
+      isImg: p.media !== 'video' && p.media !== 'obj' && p.media !== 'globe',
       notVideo: p.media !== 'video',
       figA: p.figA || 'FIG.A', figB: p.figB || 'FIG.B',
       chartAlt: p.chartAlt || '',
@@ -447,9 +524,9 @@ class Component extends DCLogic {
         ? 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:195.5%;height:auto;filter:grayscale(1) contrast(1.15) brightness(0.82)'
         : 'display:block;width:100%;height:auto;transform-origin:center;filter:grayscale(1) contrast(1.35) brightness(1.06)',
       imgGlow: (p.img && p.img.indexOf('waldo') !== -1) ? 'none' : 'drop-shadow(0 0 10px rgba(255,69,0,0.25))',
-      expanded: !!openSet[i],
-      sign: openSet[i] ? '\u2212' : '+',
-      onToggle: () => this.setState(s => ({ open: { ...(s.open || {}), [i]: !((s.open || {})[i]) } })),
+      expanded: !collapsedSet[i],
+      sign: collapsedSet[i] ? '+' : '\u2212',
+      onToggle: () => this.setState(s => ({ collapsed: { ...(s.collapsed || {}), [i]: !((s.collapsed || {})[i]) } })),
     }));
     const nodes = [
       { key: 'GITHUB', val: 'github.com/EHaarer', href: 'https://github.com/EHaarer' },
@@ -464,8 +541,10 @@ class Component extends DCLogic {
       light,
       rootClass: light ? 'nsb-light' : '',
       themeLabel: light ? 'DARK MODE' : 'LIGHT MODE',
+      themeWord: light ? 'DARK' : 'LIGHT',
       toggleTheme: () => this.setState(s => ({ light: !s.light })),
-      playVideo: (el) => { if (el) { el.muted = true; const p = el.play(); if (p && p.catch) p.catch(() => {}); } },
+      // called as a ref (element) and as onCanPlay/onLoadedData (event)
+      playVideo: (x) => { const el = x && x.currentTarget ? x.currentTarget : x; if (el && el.play) { el.muted = true; const p = el.play(); if (p && p.catch) p.catch(() => {}); } },
       sendPacket: () => {
         const id = document.getElementById('f-id');
         const msg = document.getElementById('f-msg');
