@@ -1,0 +1,10 @@
+/* ============================================================
+   FONTS — loaded from Google Fonts CDN.
+   Display : Syne (800), Archivo Black
+   Section : Space Grotesk
+   Mono    : JetBrains Mono, Space Mono
+   NOTE: Impact / Arial Black / Courier Prime are named as
+   system fallbacks in the stacks; no binaries shipped for them.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap');

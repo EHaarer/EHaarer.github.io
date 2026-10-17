@@ -1,0 +1,81 @@
+/* ============================================================
+   TYPOGRAPHY — Neuro-Symbolic Brutalist
+   Two axes:
+     DISPLAY  — structural concrete blocks (uppercase, tight)
+     TELEMETRY— monospace metadata / system logs (small)
+   ============================================================ */
+
+:root {
+  /* ---- Font stacks ---- */
+  --font-display: 'Syne', 'Archivo Black', Impact, 'Haettenschweiler', sans-serif;
+  --font-heavy:   'Archivo Black', Impact, 'Arial Black', sans-serif;
+  --font-section: 'Space Grotesk', 'Public Sans', 'Arial Black', sans-serif;
+  --font-mono:    'JetBrains Mono', 'Space Mono', 'Courier Prime', 'Courier New', monospace;
+
+  /* ---- Type scale (display, blocky) ---- */
+  --fs-hero:    clamp(56px, 11vw, 148px); /* @kind font */
+  --fs-display: clamp(40px, 7vw, 92px);   /* @kind font */
+  --fs-h1:      clamp(32px, 4.5vw, 56px);  /* @kind font */
+  --fs-h2:      28px;
+  --fs-h3:      20px;
+
+  /* ---- Section label scale ---- */
+  --fs-section: 14px;
+
+  /* ---- Body / telemetry scale (mono, small) ---- */
+  --fs-body:    14px;
+  --fs-sm:      12px;
+  --fs-meta:    10px;  /* metadata fields, ~9-10pt spec */
+  --fs-micro:   9px;   /* running logs, corner artifacts */
+
+  /* ---- Line heights ---- */
+  --lh-block:   0.9;   /* @kind other */
+  --lh-tight:   1.05;  /* @kind other */
+  --lh-body:    1.65;  /* @kind other */
+  --lh-meta:    1.5;   /* @kind other */
+
+  /* ---- Letter spacing ---- */
+  --ls-display: -0.03em; /* negative, concrete blocks */
+  --ls-tight:   -0.01em;
+  --ls-label:   0.18em;  /* wide tracked section labels */
+  --ls-meta:    0.08em;
+  --ls-barcode: 0.02em;
+}
+
+/* ---- Utility type roles (optional; tokens preferred) ---- */
+.nsb-hero {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-hero);
+  line-height: var(--lh-block);
+  letter-spacing: var(--ls-display);
+  text-transform: uppercase;
+}
+.nsb-display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-display);
+  line-height: var(--lh-block);
+  letter-spacing: var(--ls-display);
+  text-transform: uppercase;
+}
+.nsb-section-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.nsb-mono {
+  font-family: var(--font-mono);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-meta);
+}
+.nsb-meta {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  line-height: var(--lh-meta);
+  letter-spacing: var(--ls-meta);
+  text-transform: uppercase;
+}

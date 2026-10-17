@@ -1,0 +1,86 @@
+/* ============================================================
+   COLORS — Neuro-Symbolic Brutalist
+   Two chromatic configurations:
+     ALPHA — "The Anomaly Orange"  (default: cathode/radar telemetry)
+     BETA  — "The High-Ink Xerox"  (dual-tone photocopy)
+   ============================================================ */
+
+:root {
+  /* ---- ALPHA base palette (default) ---- */
+  --void-black:    #0C0C0E; /* deep matte background */
+  --chamber-grey:  #16161C; /* charcoal chambers / cards */
+  --chamber-grey-2:#1E1E26; /* raised chamber */
+  --hot-coral:     #FF4500; /* aggressive high-impact accent */
+  --hot-coral-dim: #C43300; /* pressed / darker coral */
+  --bone-white:    #DCDCCF; /* body content, warm bone */
+  --bone-dim:      #8C8C82; /* secondary bone / muted */
+  --bone-faint:    #55554E; /* tertiary / disabled */
+
+  /* ---- BETA base palette (xerox) ---- */
+  --carbon-black:  #000000;
+  --raw-pulp:      #E5E5DF; /* raw pulp paper */
+  --bleached:      #FFFFFF; /* pure bleached white */
+
+  /* ---- Wire / grid strokes ---- */
+  --wire:          rgba(255, 69, 0, 0.55);  /* coral blueprint 1px */
+  --wire-faint:    rgba(220, 220, 207, 0.14);/* bone hairline grid */
+  --wire-ghost:    rgba(220, 220, 207, 0.06);
+
+  /* ---- Signal / status colors (kept muted, terminal-like) ---- */
+  --signal-ok:     #7FBF6A; /* MEM_ALLOC: OK */
+  --signal-warn:   #E5B23A;
+  --signal-err:    #FF4500; /* errors reuse coral */
+  --signal-idle:   #4A6A8A;
+
+  /* ============================================================
+     SEMANTIC ALIASES — reference these, not the raw values.
+     Defaults resolve to Configuration ALPHA.
+     ============================================================ */
+  --bg:            var(--void-black);
+  --bg-elevated:   var(--chamber-grey);
+  --bg-raised:     var(--chamber-grey-2);
+  --surface-card:  var(--chamber-grey);
+
+  --text-body:     var(--bone-white);
+  --text-muted:    var(--bone-dim);
+  --text-faint:    var(--bone-faint);
+  --text-invert:   var(--void-black);
+
+  --accent:        var(--hot-coral);
+  --accent-press:  var(--hot-coral-dim);
+  --on-accent:     var(--void-black);
+
+  --border:        var(--wire-faint);
+  --border-strong: rgba(220, 220, 207, 0.30);
+  --border-accent: var(--hot-coral);
+  --grid-line:     var(--wire-faint);
+}
+
+/* ============================================================
+   CONFIGURATION BETA — apply via [data-config="beta"] on a
+   container (or <html>) to flip the whole tree to xerox mode.
+   ============================================================ */
+[data-config="beta"] {
+  --bg:            var(--raw-pulp);
+  --bg-elevated:   var(--bleached);
+  --bg-raised:     var(--bleached);
+  --surface-card:  var(--raw-pulp);
+
+  --text-body:     var(--carbon-black);
+  --text-muted:    #4A4A44;
+  --text-faint:    #8A8A82;
+  --text-invert:   var(--raw-pulp);
+
+  --accent:        var(--carbon-black);
+  --accent-press:  #2A2A2A;
+  --on-accent:     var(--raw-pulp);
+
+  --border:        rgba(0, 0, 0, 0.22);
+  --border-strong: rgba(0, 0, 0, 0.55);
+  --border-accent: var(--carbon-black);
+  --grid-line:     rgba(0, 0, 0, 0.12);
+
+  --wire:          rgba(0, 0, 0, 0.7);
+  --wire-faint:    rgba(0, 0, 0, 0.14);
+  --wire-ghost:    rgba(0, 0, 0, 0.06);
+}

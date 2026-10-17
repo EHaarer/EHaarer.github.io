@@ -1,0 +1,48 @@
+/* ============================================================
+   SPACING & GEOMETRY — rigid, structural grid.
+   Brutalist: sharp corners, 1px borders, minimal radius.
+   ============================================================ */
+
+:root {
+  /* ---- Spacing scale (4px base, structural) ---- */
+  --sp-0:  0px;
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-5:  24px;
+  --sp-6:  32px;
+  --sp-7:  48px;
+  --sp-8:  64px;
+  --sp-9:  96px;
+  --sp-10: 128px;
+
+  /* ---- Borders (visible box-model framing) ---- */
+  --bw-hair:   1px;   /* blueprint 1px default */
+  --bw-solid:  1.5px;
+  --bw-heavy:  2px;
+  --bw-block:  3px;
+
+  /* ---- Radius: brutalist = near-zero ---- */
+  --r-none: 0px;
+  --r-xs:   1px;   /* barely-there */
+  --r-sm:   2px;
+  /* no large radii by design */
+
+  /* ---- Structural grid ---- */
+  --grid-unit:   8px;
+  --grid-gutter: 1px;   /* containers natively touch */
+  --crosshair:   10px;  /* [ + ] alignment marker size */
+
+  /* ---- Container widths ---- */
+  --w-content: 1200px;
+  --w-narrow:  760px;
+  --w-wide:    1440px;
+
+  /* ---- Motion — mechanical, no bounce ---- */
+  --ease-mech: cubic-bezier(0.2, 0, 0, 1);   /* @kind other */
+  --ease-snap: cubic-bezier(0.7, 0, 0.3, 1); /* @kind other */
+  --dur-fast:  90ms;  /* @kind other */
+  --dur-base:  150ms; /* @kind other */
+  --dur-slow:  260ms; /* @kind other */
+}

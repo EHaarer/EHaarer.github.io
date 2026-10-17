@@ -1,590 +1,481 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=0.41, maximum-scale=1" />
-		<meta name="description" content="Ethan Haarer portfolio">
-		<meta name="keywords" content="Ethan Haarer, Georgia Tech, MS CS, Projects, Computer Science">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ethan Haarer</title>
+<meta name="description" content="Ethan Haarer — machine learning researcher. Portfolio of work, projects, and publications.">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/neuro-symbolic-brutalist-design-system-cd710455-7b37-4c4d-9090-902b3407f6cb/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/neuro-symbolic-brutalist-design-system-cd710455-7b37-4c4d-9090-902b3407f6cb/tokens/colors.css">
+<link rel="stylesheet" href="_ds/neuro-symbolic-brutalist-design-system-cd710455-7b37-4c4d-9090-902b3407f6cb/tokens/typography.css">
+<link rel="stylesheet" href="_ds/neuro-symbolic-brutalist-design-system-cd710455-7b37-4c4d-9090-902b3407f6cb/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/neuro-symbolic-brutalist-design-system-cd710455-7b37-4c4d-9090-902b3407f6cb/tokens/effects.css">
+<link rel="stylesheet" href="_ds/neuro-symbolic-brutalist-design-system-cd710455-7b37-4c4d-9090-902b3407f6cb/styles.css">
+<script src="_ds/neuro-symbolic-brutalist-design-system-cd710455-7b37-4c4d-9090-902b3407f6cb/_ds_bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="assets/obj-wireframe.js"></script>
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:56px}
+  body{margin:0;background:#0C0C0E;color:var(--text-body);font-family:var(--font-mono);-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:#FF4500;color:#0C0C0E}
+  @keyframes nsbBlink{0%,49%{opacity:1}50%,100%{opacity:0}}
+  /* CONFIG-BETA / LIGHT MODE — palette flip via luminance invert (hue preserved) */
+  .nsb-light{filter:invert(1) hue-rotate(180deg)!important}
+  /* counter-invert media so photos, logos, chart & video keep their true palette */
+  .nsb-light img:not(.nsb-flip):not(.nsb-matrix),.nsb-light video{filter:invert(1) hue-rotate(180deg)!important}
+  /* coral wire-texture in light mode: let the root invert flip black bg → white while
+     hue-rotate preserves the coral lines; just raise opacity for foreground contrast */
+  .nsb-light .nsb-matrix{opacity:0.48!important;filter:saturate(0.8)!important}
+</style>
+</helmet>
 
-  		<link rel="stylesheet" href="assets/css/styles.css">
-  		<link rel="icon" href="assets/img/JR.png">
-		<link rel="stylesheet" href="https://use.typekit.net/ufg7hqz.css">
-		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Source+Sans+Pro&display=swap" rel="stylesheet">
+<div class="{{ rootClass }}" style="background:#0C0C0E;min-height:100vh;filter:invert(0) hue-rotate(0deg);transition:filter 200ms ease">
 
-		<title>Ethan Haarer</title>
+  <!-- NAV -->
+  <nav style="position:sticky;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 20px;background:rgba(12,12,14,0.92);backdrop-filter:blur(2px);border-bottom:2px solid #FF4500">
+    <a href="#sec01" style="display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:800;letter-spacing:-0.02em;text-transform:uppercase;font-size:16px;color:var(--bone-white)">
+      <span aria-hidden="true" style="position: relative; display: inline-block; width: 10px; height: 10px; color: rgb(255, 69, 0);"><span style="position: absolute; left: 50%; top: 0px; width: 1px; height: 100%; background: currentcolor; transform: translateX(-0.5px);"></span><span style="position: absolute; top: 50%; left: 0px; height: 1px; width: 100%; background: currentcolor; transform: translateY(-0.5px);"></span></span>PORTFOLIO</a>
+    <div style="display:flex;align-items:center;gap:4px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase">
+      <a href="#sec01" style="padding:8px 12px;color:var(--text-muted);transition:color 90ms" style-hover="color:#FF4500">01·MATRIX</a>
+      <a href="#sec02" style="padding:8px 12px;color:var(--text-muted);transition:color 90ms" style-hover="color:#FF4500">02·REPOS</a>
+      <a href="#sec03" style="padding:8px 12px;color:var(--text-muted);transition:color 90ms" style-hover="color:#FF4500">03·INDEX</a>
+      <a href="#sec04" style="padding:8px 12px;color:var(--text-muted);transition:color 90ms" style-hover="color:#FF4500">04·TERMINAL</a>
+      <button onClick="{{ toggleTheme }}" aria-pressed="{{ light }}" style="margin-left:10px;display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#FF4500;background:transparent;border:1px solid #FF4500;padding:7px 11px;cursor:crosshair;transition:background 90ms,color 90ms" style-hover="background:#FF4500;color:#0C0C0E">
+        <span aria-hidden="true" style="position:relative;display:inline-block;width:9px;height:9px"><span style="position:absolute;left:50%;top:0;width:1px;height:100%;background:currentColor;transform:translateX(-0.5px)"></span><span style="position:absolute;top:50%;left:0;height:1px;width:100%;background:currentColor;transform:translateY(-0.5px)"></span></span>{{ themeLabel }}</button>
+    </div>
+  </nav>
 
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153644395-1"></script>
-		<script>
-		  window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());
+  <!-- MAIN FRAME -->
+  <div style="max-width:1280px;margin:0 auto;border-left:1px solid rgba(255,69,0,0.35);border-right:1px solid rgba(255,69,0,0.35)">
 
-		  gtag('config', 'UA-153644395-1');
-		</script> -->
-		
-	</head>
-	<body>
+    <!-- ===================== SECTION 01 — COGNITIVE MATRIX ===================== -->
+    <section id="sec01" data-screen-label="01 · Cognitive Matrix" style="position:relative;border-bottom:2px solid #FF4500;background-image:linear-gradient(rgba(220,220,207,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(220,220,207,0.05) 1px,transparent 1px);background-size:40px 40px">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:1px solid rgba(255,69,0,0.35);font-family:var(--font-mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-faint)">
+        <span style="color:#FF4500">01. SEC_REF // COGNITIVE_MATRIX</span>
+        <span>MEM_ALLOC: OK &nbsp;·&nbsp; UPTIME 99.98% &nbsp;·&nbsp; boot.seq nominal<span style="color:#FF4500;animation:nsbBlink 1s steps(1) infinite">_</span></span>
+      </div>
+      <div style="display:grid;grid-template-columns:65fr 35fr">
+        <!-- LEFT 65% -->
+        <div style="padding:56px 40px 48px;border-right:1px solid rgba(255,69,0,0.35)">
+          <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:22px">[ MACHINE LEARNING RESEARCHER ]</div>
+          <h1 style="margin:0;font-family:var(--font-display);font-weight:800;line-height:0.86;letter-spacing:-0.04em;text-transform:uppercase;font-size:clamp(52px,8.5vw,116px);color:var(--bone-white)">
+            ETHAN<br><span style="color:transparent;-webkit-text-stroke:2px #FF4500">HAARER</span>
+          </h1>
+          <div style="margin-top:22px;font-family:var(--font-mono);font-size:13px;letter-spacing:0.08em;color:#FF4500;text-transform:uppercase;border-top:1px solid rgba(255,69,0,0.4);border-bottom:1px solid rgba(255,69,0,0.4);padding:12px 0">SYS.REF // COGNITIVE-INSPIRED ARCHITECTURES</div>
+          <p style="margin:26px 0 0;max-width:56ch;font-family:var(--font-mono);font-size:14px;line-height:1.65;color:var(--bone-white)">
+            I am currently a&nbsp;<span style="color: rgb(255, 69, 0);">Founding Engineer</span>&nbsp;at a [STEALTH STARTUP] where I predominately develop cognitive-inspired ML systems. Our research predominantly revolves around&nbsp;<span style="color: rgb(255, 69, 0);">Representation Learning</span>, <font color="#ff4500">Novel ML Algorithms</font>, and&nbsp;<span style="color: rgb(255, 69, 0);">Mechanistic Interpretability</span>.</p>
+          <p style="margin: 16px 0 0; max-width: 56ch; font-family: var(--font-mono); font-size: 13px; line-height: 1.65; color: var(--text-muted); width: 440px; height: 152px">My research Interests lie in Neuro-Symbolic AI, specifically in cognitive-inspired systems that learn continuously from few examples, grow their own concept hierarchies the way people do, and stay explainable and interpretable at every layer.&nbsp;<br>I also enjoy deploying Edge AI to see how far we can push local compute to aid those in the field.</p>
+          <!-- education telemetry -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:36px;border:1px solid rgba(220,220,207,0.18);background:rgba(220,220,207,0.18)">
+            <div style="background:#0C0C0E;padding:16px 18px">
+              <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted)">EDU_NODE · 01</div>
+              <div style="font-family:var(--font-display);font-weight:800;font-size:20px;letter-spacing:-0.01em;text-transform:uppercase;color:var(--bone-white);margin-top:8px;line-height:1">M.S. COMPUTER SCIENCE</div>
+              <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-muted);margin-top:8px;line-height:1.5">Georgia Institute of Technology<br>Machine Learning Specialization · <span data-om-label="Dec 2025" style="color: rgb(255, 69, 0);">Dec 2025</span></div>
+            </div>
+            <div style="background:#0C0C0E;padding:16px 18px">
+              <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted)">EDU_NODE · 02</div>
+              <div style="font-family:var(--font-display);font-weight:800;font-size:20px;letter-spacing:-0.01em;text-transform:uppercase;color:var(--bone-white);margin-top:8px;line-height:1">B.S. COMPUTER SCIENCE</div>
+              <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-muted);margin-top:8px;line-height:1.5">Georgia Institute of Technology<br>Intelligence &amp; Devices · Summa Cum Laude · <span style="color: rgb(255, 69, 0);">May 2024</span></div>
+            </div>
+          </div>
+        </div>
+        <!-- RIGHT 35% -->
+        <div style="position:relative;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid rgba(255,69,0,0.35);font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-faint)">
+            <span>FIG.01 — COGNITIVE MESH</span><span style="color:#FF4500">R · MAPPED</span>
+          </div>
+          <div style="position:relative;flex:1;min-height:420px;background:#0C0C0E;background-image:radial-gradient(rgba(255,69,0,0.10) 0.8px,transparent 1px);background-size:14px 14px;display:flex;align-items:center;justify-content:center;overflow:hidden">
+            <img src="assets/img/hero-figure-coral.png" alt="Human figure bound within a spherical coordinate graph" style="width:112%;max-width:none;filter:drop-shadow(0 0 12px rgba(255,69,0,0.35))">
+          </div>
+          <div style="padding:12px 14px;border-top:1px solid rgba(255,69,0,0.35);font-family:var(--font-mono);font-size:9px;line-height:1.7;letter-spacing:0.06em;color:var(--text-muted)">
+            <div><span style="color:var(--text-faint)">·</span> figure ∈ spherical coordinate graph</div>
+            <div><span style="color:var(--text-faint)">·</span> human cognition ↔ machine mesh</div>
+            <div><span style="color:#FF4500">·</span> threshold: neuro-symbolic binding</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-		<!--Navigation Bar-->
-		<div id="nav">
-			<a href="#home-section" class="nav-item right">ETHAN HAARER</a>
-			<a href="#project-section" class="nav-item left">PROJECTS</a>
-			<a href="#education-section" class="nav-item left">EDUCATION</a>
-			<a href="#about-section" class="nav-item left">ABOUT</a>
-		</div>
+    <!-- ===================== SECTION 02 — PARADIGM REPOSITORIES ===================== -->
+    <section id="sec02" data-screen-label="02 · Paradigm Repositories" style="border-bottom:2px solid #FF4500">
+      <div style="padding:26px 20px 24px;border-bottom:1px solid rgba(255,69,0,0.35)">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted)">
+            <span style="color:#FF4500;font-weight:700">02.</span><span style="width:24px;height:1px;background:var(--border-strong)"></span><span>SEC_REF</span>
+          </div>
+          <span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-faint)">N = 003 FEATURED</span>
+        </div>
+        <h2 style="margin:14px 0 0;font-family:var(--font-display);font-weight:800;font-size:clamp(40px,5.5vw,72px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;color:var(--bone-white)">Research <span style="color:transparent;-webkit-text-stroke:1.5px #FF4500">Publications</span></h2>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(255,69,0,0.35)">
 
-		<div class="page-content">
-			
-			<!--Home Page-->
-			<section id="home-section">
-				<div class="container row">
-					<div class="container row" id="landing-container">
-						<!-- //fix this  -->
-						<img src="assets/img/EthanHeadshot.jpg" id="profile-icon">
-						<div class="container column" id="landing-text">
-							<h1 class="title">Ethan Haarer</h1>
-							<p id="app"></p>
-						</div>
-					</div>
-					<a href="#about-section" class="arrow"></a>
-				</div>
-			</section>
+        <!-- PAPER 01 -->
+        <article style="background:#0C0C0E;display:flex;flex-direction:column">
+          <div style="position: relative; height: 200px; border-bottom: 1px solid rgba(255,69,0,0.35); display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #000000">
+            <img src="./deeptaxonnet-mr8l4x41.png" class="nsb-flip" alt="Warped concentric gradient grid" style="width: 404px; height: 222px; object-fit: cover; filter: grayscale(1) contrast(1.35) brightness(1.05)">
+            <span style="position:absolute;top:8px;left:10px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;color:#FF4500">[ P·01 ]</span>
+          </div>
+          <div style="padding:20px 18px 22px;display:flex;flex-direction:column;flex:1">
+            <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted)">UNSUPERVISED · LATENT_REP · EMERGENT</div>
+            <h3 style="margin:12px 0 0;font-family:var(--font-display);font-weight:800;font-size:22px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;color:var(--bone-white)">Deep Taxonomic Networks for Unsupervised Hierarchical Prototype Discovery</h3>
+            <p style="margin:14px 0 0;font-family:var(--font-mono);font-size:11px;line-height:1.6;color:var(--text-muted)">A deep latent-variable approach that optimizes a large latent hierarchy to automatically discover taxonomic structure and prototype clusters directly from unlabeled data; statistical optimization walking a gradient space toward emergent topology.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 18px">
+              <span style="font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 7px;border:1px solid rgba(220,220,207,0.35);color:var(--text-muted)">VAE</span>
+              <span style="font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 7px;border:1px solid rgba(220,220,207,0.35);color:var(--text-muted)">MIX_OF_GAUSS</span>
+              <span style="font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 7px;border:1px solid #FF4500;color:#FF4500">NeurIPS 2025</span>
+            </div>
+            <a href="https://arxiv.org/abs/2509.23602" style="margin-top:auto;display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#FF4500;transition:gap 120ms" style-hover="gap:14px">READ ON ARXIV→</a>
+          </div>
+        </article>
 
-			<!--About Section-->
-			<section class ="container column" id="about-section">
-				<h1 class="subtitle">HELLO, WORLD!</h1>
-				<div class="container row" id="img-console">
-					<div id="console">
-						<span class="first-color">package</span>
-						<span class="fifth-color">BusinessCard</span><span class="second-color">;</span>
-						<br>
-						<br>
-						<span class="first-color">public</span>
-						<span class="third-color">class</span>
-						<span class="fifth-color">Ethan</span>
-						<span class="first-color">extends</span>
-						<span class="fifth-color">Student</span>
-						<span class="second-color">{</span>
-						<br>
-						<ul>
-							<span class="first-color">public</span>
-							<span class="fifth-color">Ethan</span><!-- 
-						 --><span class="second-color">() {</span>
-							<br>
-							<ul>
-							    <span class="third-color">String</span>
-							    <span class="second-color">fullName = </span>
-								<span class="fourth-color">"Ethan Haarer"</span><span class="second-color">;</span>
-								<br>
-								<!-- <span class="third-color">String</span>
-								<span class="second-color">homeTown = </span>
-								<span class="fourth-color">"Alpharetta, GA"</span><span class="second-color">;</span>
-								<br> -->
-								<span class="third-color">String</span>
-								<span class="second-color">school = </span>
-								<span class="fourth-color">"Georgia Tech"</span><span class="second-color">;</span>
-								<br>
-								<span class="third-color">Masters</span>
-							    <span class="second-color">major = </span>
-								<span class="fourth-color">"Computer Science"</span><span class="second-color">;</span>
-								<br>
-								<span class="third-color">String</span>
-							    <span class="second-color">specialization = </span>
-								<span class="fourth-color">"Machine Learning"</span><span class="second-color">;</span>
-								<br>
-								<!-- <span class="third-color">int</span>
-								<span class="second-color">expGraduation = </span>
-								<span class="fourth-color">June 2025</span><span class="second-color">;</span>
-								<br> -->
-								<span class="third-color">Resume</span>
-								<span class="second-color">Fall_2025_Resume = </span>
-								<span class="first-color">new</span>
-								<span class="second-color">Resume(</span><span class="fourth-color">"</span><!-- 
-								 --><span ><a href="assets/Resume.pdf" class="fourth-color">pdf</a></span><!-- 
-								 --><span class="fourth-color">"</span><span class="second-color">)</span><span class="second-color">;</span>
-								<br>
-								<span class="third-color">String[]</span>
-								<span class="second-color">hobbiesAndInterests = </span>
-								<span class="first-color">new </span>
-								<span class="third-color">String[]</span>
-								<span class="second-color">{</span>
-								<br>
-								<ul>
-									<span class="fourth-color">"Hockey"</span><span class="second-color">,</span>
-									<br>
-									<span class="fourth-color">"Reading"</span><span class="second-color">,</span>
-									<br>
-									<span class="fourth-color">"3D Printing"</span><span class="second-color"></span>
-									<br>
-								</ul>
-								<span class="second-color">}</span>
-								<br>
-							</ul>
-							<span class="second-color">}</span>
-							<br>
-							<span class="first-color">public static</span>
-							<span class="third-color">void</span>
-							<span class="fifth-color">contact</span><!-- 
-						 --><span class="second-color">() {</span>
-						 		<ul>
-						 			<span class="third-color">Email</span>
-									<span class="second-color">email = </span>
-									<span class="first-color">new</span>
-									<span class="second-color">Email(</span><span class="fourth-color">"</span><!-- 
-								 --><span ><a href="mailto:ethanldhaarer@gmail.com" class="fourth-color">ethanldhaarer@gmail.com</a></span><!-- 
-								 --><span class="fourth-color">"</span><span class="second-color">)</span><span class="second-color">;</span>
-								 	<br>
-								 	<span class="third-color">String[]</span>
-									<span class="second-color">links = </span>
-									<span class="first-color">new </span>
-									<span class="third-color">String[]</span>
-									<span class="second-color">{</span>
-									<br>
-									<ul>
-										<span class="fourth-color">"</span><!-- 
-									--><a href="https://www.linkedin.com/in/ethan-haarer/" class= "fourth-color" target="_blank">LinkedIn</a><!-- 
-									 --><span class="fourth-color">"</span><span class="second-color">,</span>
-										<br>
-										<span class="fourth-color">"</span><!-- 
-									--><a href="https://github.com/EHaarer" class= "fourth-color" target="_blank">Github</a><!-- 
-									 --><span class="fourth-color">"</span><span class="second-color">,</span>
-										<br>
-										<span class="fourth-color">"</span><!-- 
-									--><a href="https://arxiv.org/search/cs?searchtype=author&query=Haarer,+E+L" class= "fourth-color" target="_blank">ArXiv</a><!-- 
-									 --><span class="fourth-color">"</span><span class="second-color">,</span>
-										<br>
-									</ul>
-									<span class="second-color">}</span>
-						 		</ul>
-						 	<span class="second-color">}</span>
-							<br>
+        <!-- PAPER 02 -->
+        <article style="background:#0C0C0E;display:flex;flex-direction:column">
+          <div style="position: relative; border-bottom: 1px solid rgba(255,69,0,0.35); display: flex; align-items: center; justify-content: center; overflow: hidden; height: 200px; background-color: var(--carbon-black)">
+            <img src="./neurosympaperimage-modified-mr8lhuo8.png" class="nsb-flip" alt="Upward hyperbolic cone wireframe" style="object-fit: cover; height: 224px; width: 317px">
+            <span style="position:absolute;top:8px;left:10px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;color:#FF4500">[ P·02 ]</span>
+          </div>
+          <div style="padding:20px 18px 22px;display:flex;flex-direction:column;flex:1">
+            <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted)">NEURO-SYMBOLIC · INTERPRETABLE · KNOWLEDGE_REP</div>
+            <h3 style="margin:12px 0 0;font-family:var(--font-display);font-weight:800;font-size:22px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;color:var(--bone-white)">Taxonomic Networks: A Representation for Neuro-Symbolic Pairing</h3>
+            <p style="margin:14px 0 0;font-family:var(--font-mono);font-size:11px;line-height:1.6;color:var(--text-muted)">Frames taxonomic networks as the shared representation that pairs connectionist learning with symbolic structure: top-down symbol instantiation and discrete knowledge routing over a learned abstraction tree that stays inspectable.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 18px">
+              <span style="font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 7px;border:1px solid rgba(220,220,207,0.35);color:var(--text-muted)">Symbolic</span>
+              <span style="font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 7px;border:1px solid rgba(220,220,207,0.35);color:var(--text-muted)">Cobweb</span>
+              <span style="font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 7px;border:1px solid #FF4500;color:#FF4500">NEUS'25</span>
+            </div>
+            <a href="https://arxiv.org/abs/2505.24601" style="margin-top:auto;display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#FF4500;transition:gap 120ms" style-hover="gap:14px">READ ON ARXIV →</a>
+          </div>
+        </article>
 
+        <!-- PAPER 03 -->
+        <article style="background:#0C0C0E;display:flex;flex-direction:column">
+          <div style="position: relative; height: 200px; border-bottom: 1px solid rgba(255,69,0,0.35); display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #000000">
+            <img src="./crossculttypicalitypaper-mr8lld72.png" class="nsb-flip" alt="Twin-hemisphere wireframe sphere" style="width: 345px; object-fit: contain; height: 413px">
+            <span style="position:absolute;top:8px;left:10px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;color:#FF4500">[ P·03 ]</span>
+          </div>
+          <div style="padding:20px 18px 22px;display:flex;flex-direction:column;flex:1">
+            <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted)">COGNITIVE · ALIGNMENT · MULTILINGUAL</div>
+            <h3 style="margin:12px 0 0;font-family:var(--font-display);font-weight:800;font-size:22px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;color:var(--bone-white)">Cross-Language Typicality Effects in a Multilingual Large Language Model</h3>
+            <p style="margin:14px 0 0;font-family:var(--font-mono);font-size:11px;line-height:1.6;color:var(--text-muted)">Tests whether GPT-4o aligns with human typicality norms across five languages, probing the synchronization of statistical neural maps with the structured, human-like conceptual frameworks they must mirror.<br><br></p>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 18px">
+              <span style="font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 7px;border:1px solid rgba(220,220,207,0.35);color:var(--text-muted)">GPT-4o</span>
+              <span style="font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 7px;border:1px solid rgba(220,220,207,0.35);color:var(--text-muted)">Cognition</span>
+              <span style="font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 7px;border:1px solid #FF4500;color:#FF4500">COGSCI'25</span>
+            </div>
+            <a href="https://escholarship.org/uc/item/6n50w46w" style="margin-top:auto;display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#FF4500;transition:gap 120ms" style-hover="gap:14px">LINK TO RESEARCH →</a>
+          </div>
+        </article>
+      </div>
+    </section>
 
-						</ul>
-						<span class="second-color">}</span>
-					</div>
+    <!-- ===================== SECTION 03 — WORK EXPERIENCE ===================== -->
+    <section id="sec03" data-screen-label="03 · Work Experience" style="position:relative;border-bottom:2px solid #FF4500;overflow:hidden">
+      <img src="assets/img/sec3-matrix-coral.png" class="nsb-matrix" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.15;pointer-events:none">
+      <div style="position:relative">
+        <div style="padding:26px 20px 24px;border-bottom:2px solid #FF4500;background:rgba(12,12,14,0.6)">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div style="display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--bone-white)">
+              <span style="color:#FF4500;font-weight:700">[03.SEC_REF]</span><span>// CAREER TIMELINE</span>
+            </div>
+            <span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-faint)">N = 003 · deployment log</span>
+          </div>
+          <h2 style="margin:14px 0 0;font-family:var(--font-display);font-weight:800;font-size:clamp(40px,5.5vw,72px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;color:var(--bone-white)">Work <span style="color:transparent;-webkit-text-stroke:1.5px #FF4500">Experience</span></h2>
+        </div>
+        <!-- column header -->
+        <div style="display:grid;grid-template-columns:70px 290px 1fr 160px;background:rgba(12,12,14,0.55);border-bottom:2px solid #FF4500;font-family:var(--font-mono);font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted)">
+          <div style="padding:10px 14px">[INDEX]</div>
+          <div style="padding:10px 14px">[ORG]</div>
+          <div style="padding:10px 14px">[IDENTIFIER / DESCRIPTION]</div>
+          <div style="padding:10px 14px">[TIMEFRAME]</div>
+        </div>
+        <sc-for list="{{ workRows }}" as="r" hint-placeholder-count="3">
+          <div style="display:grid;grid-template-columns:70px 290px 1fr 160px;align-items:center;border-bottom:1px solid #FF4500;color:var(--bone-white);background:rgba(12,12,14,0.35);transition:background 90ms" style-hover="background:#FF4500;color:#0C0C0E">
+            <div style="padding:26px 14px;font-family:var(--font-mono);font-size:13px;font-weight:700;color:inherit">{{ r.idx }}</div>
+            <div style="padding: 20px 14px; display: flex; align-items: center; justify-content: center">
+              <img src="{{ r.logo }}" alt="" style="max-width: 246px; max-height: 81px; object-fit: contain; object-position: left center">
+            </div>
+            <div style="padding:24px 14px;color:inherit">
+              <div style="font-family:var(--font-display);font-weight:800;font-size:18px;letter-spacing:-0.01em;text-transform:uppercase;line-height:1.05;color:inherit">{{ r.title }}</div>
+              <div style="font-family:var(--font-mono);font-size:11px;line-height:1.65;color:inherit;opacity:0.72;margin-top:8px;max-width:72ch">{{ r.desc }}</div>
+              <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:inherit;opacity:0.55;margin-top:10px">{{ r.meta }}</div>
+            </div>
+            <div style="padding: 26px 14px; font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.5; color: inherit; text-align: right">{{ r.time }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
 
-					<!-- <img src="assets/img/Best Shot.pdf" id="about-img"> -->
-				</div>
-			</section>
+    <!-- ===================== SECTION 3B — PROJECTS CONSOLE ===================== -->
+    <section id="sec03b" data-screen-label="03B · Projects Console" style="position:relative;border-bottom:2px solid #FF4500;background:#0C0C0E">
+      <div style="padding:26px 20px 24px;border-bottom:2px solid #FF4500;background:rgba(12,12,14,0.6)">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--bone-white)">
+            <span style="color:#FF4500;font-weight:700">[03B.SEC_REF]</span><span>// EXPANSIBLE_REPOSITORY</span>
+          </div>
+          <span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-faint)">N = 007 · CLICK ROW TO EXTRACT [ + ]</span>
+        </div>
+        <h2 style="margin:14px 0 0;font-family:var(--font-display);font-weight:800;font-size:clamp(40px,5.5vw,72px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;color:var(--bone-white)">Projects <span style="color:transparent;-webkit-text-stroke:1.5px #FF4500">Showcase</span></h2>
+      </div>
 
-			<!--Education Section-->
-			<section class="container column parallax" id="education-section">
-				<div class="container column" id="text">
-					<h1 class="subtitle">EDUCATION</h1>
-					<div class="container rowWork" id="education-title">
-						
-						<img style="padding-right: 30px" src="assets/img/logo.png">
-						<div class="container columnWork" id="school">
-							<h2>Georgia Institute of Technology</h2>
-							<h3>B.S. - Computer Science</h3>
-							<h4>Focuses in Intelligence and Devices</h4>
-							<p>Graduated Summa Cum Laude May 2024</p>
-						</div>
+      <sc-for list="{{ projectRows }}" as="r" hint-placeholder-count="6">
+        <div>
+          <!-- COMPRESSED DATA ROW (toggle) -->
+          <button onClick="{{ r.onToggle }}" aria-expanded="{{ r.expanded }}" style="width:100%;text-align:left;background:transparent;border:none;border-bottom:1px solid #FF4500;color:#FF4500;font-family:var(--font-mono);display:flex;align-items:center;gap:14px;padding:15px 18px;cursor:crosshair" style-hover="background:#FF4500;color:#0C0C0E">
+            <span style="flex:0 0 auto;font-size:13px;font-weight:700;color:inherit;width:20px;text-align:center">[{{ r.sign }}]</span>
+            <span style="flex:0 0 auto;font-size:11px;font-weight:700;letter-spacing:0.12em;color:inherit">{{ r.code }}</span>
+            <span style="flex:0 0 auto;font-size:11px;color:inherit;opacity:0.5">//</span>
+            <span style="flex: 1 1 auto; font-family: var(--font-display); font-weight: 800; font-size: 16px; letter-spacing: -0.01em; text-transform: uppercase; line-height: 1.05; color: var(--bone-white)">{{ r.title }}</span>
+            <span style="flex:0 0 auto;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:inherit;opacity:0.7">{{ r.classRef }}</span>
+          </button>
 
-						<div class="container columnWork" id="school">
-							<h2 style = "opacity: 0;">Georgia Institute of Technology</h2> <!-- fix this: currently text is still there but just blends with background -->
-							<h3>M.S. - Computer Science</h3>
-							<h4>Specialization in Machine Learning</h4>
-							<p>Expected Graduation December 2025</p>
-						</div>
-						
-					</div>
-					
-					<br>
-					<br>
+          <!-- EXPANDED PANEL -->
+          <sc-if value="{{ r.expanded }}" hint-placeholder-val="{{ false }}">
+            <div style="display:grid;grid-template-columns:1fr 2fr;border-bottom:2px solid #FF4500;background:#111115">
+              <!-- LEFT · VECTOR CONTAINER -->
+              <sc-if value="{{ r.isImg }}" hint-placeholder-val="{{ true }}">
+                <div style="position:relative;display:flex;align-items:center;justify-content:center;padding:10px;border-right:1px solid rgba(255,69,0,0.35);background:#0C0C0E;background-image:radial-gradient(rgba(255,69,0,0.10) 0.8px,transparent 1px);background-size:14px 14px;min-height:240px;overflow:hidden">
+                  <img src="{{ r.img }}" alt="{{ r.title }}" style="position:absolute;inset:10px;width:calc(100% - 20px);height:calc(100% - 20px);object-fit:contain;background-color:transparent;filter:{{ r.imgGlow }}">
+                </div>
+              </sc-if>
+              <!-- LEFT · INTERACTIVE WIREFRAME SCENE -->
+              <sc-if value="{{ r.isObj }}" hint-placeholder-val="{{ false }}">
+                <div style="position:relative;border-right:1px solid rgba(255,69,0,0.35);background:#0C0C0E;background-image:radial-gradient(rgba(255,69,0,0.10) 0.8px,transparent 1px);background-size:14px 14px;min-height:240px;overflow:hidden">
+                  <span style="position:absolute;top:8px;left:10px;z-index:2;font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-faint);pointer-events:none">FIG · MESH_XZ</span>
+                  <span style="position:absolute;top:8px;right:10px;z-index:2;font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#FF4500;pointer-events:none">DRAG · ORBIT</span>
+                  <x-import component-from-global-scope="obj-wireframe" src="{{ r.model }}" color="#FF4500" model-rot-x="{{ r.modelRotX }}" model-rot-z="{{ r.modelRotZ }}" hint-size="100%,100%" style="position:absolute;inset:10px;width:calc(100% - 20px);height:calc(100% - 20px)"></x-import>
+                </div>
+              </sc-if>
+              <sc-if value="{{ r.isVideo }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-direction:column;border-right:1px solid rgba(255,69,0,0.35);background:#0C0C0E">
+                  <!-- FIG.A · TREATED VIDEO -->
+                  <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-bottom:1px solid rgba(255,69,0,0.35);font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-faint)">
+                    <span>{{ r.figA }}</span><span style="color:#FF4500">● LIVE_LOOP</span>
+                  </div>
+                  <div style="{{ r.videoWrapStyle }}">
+                    <video src="{{ r.video }}" ref="{{ playVideo }}" onCanPlay="{{ playVideo }}" onLoadedData="{{ playVideo }}" autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" style="{{ r.videoStyle }}"></video>
+                    <span aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background-image:repeating-linear-gradient(0deg,rgba(255,69,0,0.10) 0px,rgba(255,69,0,0.10) 1px,transparent 2px,transparent 3px);mix-blend-mode:screen"></span>
+                    <span aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:#FF4500;opacity:0.09;mix-blend-mode:overlay"></span>
+                  </div>
+                  <!-- FIG.B · TREATED CHART -->
+                  <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-bottom:1px solid rgba(255,69,0,0.35);font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-faint)">
+                    <span>{{ r.figB }}</span><span style="color:#FF4500">R · MAPPED</span>
+                  </div>
+                  <div style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 10px 12px 14px; background-image: radial-gradient(rgba(255,69,0,0.08) 0.8px,transparent 1px); background-size: 14px 14px; background-color: #000000">
+                    <img src="{{ r.chart }}" alt="{{ r.chartAlt }}" style="width:100%;height:auto;object-fit:contain;filter:invert(1) hue-rotate(180deg) contrast(1.05) saturate(1.15)">
+                  </div>
+                </div>
+              </sc-if>
+              <!-- RIGHT · METADATA -->
+              <div style="padding:18px 28px 20px">
+                <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-faint)">TITLE</div>
+                <h3 style="margin:6px 0 0;font-family:var(--font-display);font-weight:800;font-size:clamp(20px,2.4vw,30px);line-height:0.98;letter-spacing:-0.02em;text-transform:uppercase;color:var(--bone-white)">{{ r.title }}</h3>
 
-					<!-- TODO: Fix images so they Act like top picture and go above the text on smaller screens, Same for school -->
-					<div class="container column" id="text">
-						<h1 class="subtitle">PROFESSIONAL EXPIRENCE</h1>
+                <div style="display:flex;flex-wrap:wrap;gap:18px;margin-top:12px;padding:10px 0;border-top:1px solid rgba(255,69,0,0.35);border-bottom:1px solid rgba(255,69,0,0.35)">
+                  <div><span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-faint)">STATUS</span><div style="font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:0.06em;color:#FF4500;margin-top:4px">{{ r.status }}</div></div>
+                  <div><span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-faint)">CLASS_REF</span><div style="font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:0.06em;color:var(--bone-white);margin-top:4px">{{ r.classRef }}</div></div>
+                  <div><span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-faint)">STACK</span><div style="box-sizing: border-box; display: flex; flex-direction: column; gap: 12px"><div style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; color: var(--bone-white); margin-top: 4px">{{ r.meta }}</div></div></div>
+                </div>
 
-						<div class="container rowWork" id="education-title-1">
-							
-							<img src="assets/img/L3LogoFull.png" width="200vw">
-							
-							<div class="container columnWork" id="school" style="width : 50vw">
-								<h2>AI Software Engineer Intern</h2>
-								<h2>L3 Harris</h2>
-								<h3>May 2025 - August 2025</h3>
-								<li>Worked within the Space and Airborne Systems Division under the Intel and Cyber sector on the L3 AI Concept Incubator (LACI) team to support cross-sector internal research and development opportunities on emerging LLM and ML technologies.</li>
-								<li>Prototyped LHX Intelligence (LHXi) for a L3 Harris-common voice controlled intelligent AI assistant that supports ISR missions at the edge to reduce operator cognitive load.</li>
-								<li>Developed LLM-based multi-agentic framework that organizes and schedules task topologies to objectively evaluate reliability and improve explainability & trust in products integrating LLMs and statistical ML Models.</li>
-								<li>Demonstrated integration and capabilities of ML and extensible LLM technologies into CI/CD workflow to shareholders at Q2 Demo to communicate how new advances are reliable and scalable, improving confidence in customers.</li>
-								<li>Experimented with MCP integrations to evaluate integration techniques on varying model sizes and capabilities, and orchestrated dockerized solutions for ideation handoff.</li>
-							</div>
-							
-						</div>
+                <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-faint);margin-top:12px">DESCRIPTION</div>
+                <p style="margin:6px 0 0;max-width:64ch;font-family:var(--font-mono);font-size:12px;line-height:1.6;color:var(--bone-white)">{{ r.desc }}</p>
 
-						<br>
-						<br>
-						<br>
+                <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-faint);margin-top:14px">ACTIONS</div>
+                <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px">
+                  <sc-for list="{{ r.actions }}" as="a" hint-placeholder-count="2">
+                    <a href="{{ a.href }}" target="_blank" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#FF4500;background:transparent;border:1px solid #FF4500;padding:9px 13px;transition:none;cursor:crosshair" style-hover="background:#FF4500;color:#0C0C0E">&gt; {{ a.label }}</a>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </section>
 
-						<div class="container rowWork" id="education-title-1">
-							
-							<img src="assets/img/TAIL-Brain.png">
-							
-							<div class="container columnWork" id="school" style="width : 50vw">
-								<h2>Graduate Research Assistant</h2>
-								<h2>Teachable AI Lab @ Georgia Tech</h2>
-								<h3>August 2024 - Present</h3>
-								<li>Working alongside Zekun Wang on TAIL's Cobweb Project, an unsupervised clustering model which supports incremental concept learning from fewer examples. The model learns both structure and parameters where the structural expansion is dynamic. It uses multimodal approach which is human-like as it is able to develop and update new concepts within the web structure</li>
-								<li>Implemented a novel look-ahead mechanism for the Cobweb algorithm to optimize hierarchical clustering as measured by enhanced flexibility and depth control by introducing a BFS-inspired approach with tunable frontier layers.</li>
-								<li>Conducting experiments to benchmark Cobweb against traditional neural networks and other clustering models. This involves assessing its ability to learn from fewer examples, its adaptability in dynamic environments, and its performance in comparison to other state-of-the-art models in terms of accuracy, scalability, and efficiency</li>
-								<li>Working on implementing a supervised learning variation to cobweb by implmenting Neural Net techniques like backtracking, alongside hyperparameter search using the Weights & Biases API.</li>
-							</div>
-							
-						</div>
+    <!-- ===================== SECTION 04 — ABSTRACTION TERMINAL ===================== -->
+    <section id="sec04" data-screen-label="04 · Abstraction Terminal" style="border-bottom:2px solid #FF4500">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:22px 20px;border-bottom:1px solid rgba(255,69,0,0.35)">
+        <div style="display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted)">
+          <span style="color:#FF4500;font-weight:700">04.</span><span style="width:24px;height:1px;background:var(--border-strong)"></span><span>SEC_REF // ABSTRACTION_TERMINAL</span>
+        </div>
+        <span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-faint)">awaiting operator input</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;background:rgba(255,69,0,0.35);gap:1px">
+        <!-- LEFT: form -->
+        <div style="background:#0C0C0E;padding:36px 32px 40px">
+          <div style="display:flex;gap:18px;align-items:flex-start;margin-bottom:26px">
+            <div style="width:88px;height:88px;flex:0 0 auto;position:relative;border:1px solid rgba(255,69,0,0.5);overflow:hidden;background:#0C0C0E">
+              <img src="assets/img/contact-sink.jpg" class="nsb-flip nsb-sink" alt="Square gravity-sink wormhole" style="width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.4)">
+              <span style="position:absolute;inset:0;background:#FF4500;mix-blend-mode:multiply"></span>
+            </div>
+            <div>
+              <h2 style="margin:0;font-family:var(--font-display);font-weight:800;font-size:clamp(34px,4.4vw,56px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;color:var(--bone-white)">OPEN A<br>CHANNEL</h2>
+              <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin-top:10px">DATA SINK · INBOUND QUERIES</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;max-width:420px">
+            <x-import component-from-global-scope="NeuroSymbolicBrutalistDesignSystem_cd7104.Input" label="IDENTIFIER" id="f-id" placeholder="name@domain" hint-size="100%,64px"></x-import>
+            <x-import component-from-global-scope="NeuroSymbolicBrutalistDesignSystem_cd7104.Input" label="MESSAGE" id="f-msg" prefix="&gt;" placeholder="query…" hint-size="100%,64px"></x-import>
+            <div>
+              <x-import component-from-global-scope="NeuroSymbolicBrutalistDesignSystem_cd7104.Button" variant="solid" marker="{{ true }}" onClick="{{ sendPacket }}" hint-size="auto,42px">SEND PACKET</x-import>
+            </div>
+          </div>
+        </div>
+        <!-- RIGHT: nodes -->
+        <div style="background:#0C0C0E;padding:36px 32px 40px">
+          <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px">// DATA_NODES · EXTERNAL_INDICATORS</div>
+          <div style="border-top:1px solid rgba(255,69,0,0.35)">
+            <sc-for list="{{ nodes }}" as="n" hint-placeholder-count="6">
+              <a href="{{ n.href }}" target="_blank" style="display:grid;grid-template-columns:20px 108px 1fr 16px;align-items:center;gap:12px;padding:15px 4px;border-bottom:1px solid rgba(255,69,0,0.35);color:var(--bone-white);transition:color 90ms,padding 120ms" style-hover="color:#FF4500;padding-left:12px">
+                <span aria-hidden="true" style="position:relative;display:inline-block;width:11px;height:11px;color:#FF4500"><span style="position:absolute;left:50%;top:0;width:1px;height:100%;background:currentColor;transform:translateX(-0.5px)"></span><span style="position:absolute;top:50%;left:0;height:1px;width:100%;background:currentColor;transform:translateY(-0.5px)"></span></span>
+                <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted)">{{ n.key }}</span>
+                <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.02em;color:inherit;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ n.val }}</span>
+                <span style="font-family:var(--font-mono);font-size:12px;color:inherit">→</span>
+              </a>
+            </sc-for>
+          </div>
+          <div style="margin-top:24px;font-family:var(--font-mono);font-size:9px;line-height:1.7;letter-spacing:0.06em;color:var(--text-faint)">
+            <div><span style="color:var(--signal-ok)">[OK]</span> channel encrypted · handshake nominal</div>
+            <div><span style="color:#FF4500">[R]</span> RESTRICTED · operator response &lt; 48h</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-						<br>
-						<br>
-						<br>
+  </div>
 
-						<div class="container rowWork" id="education-title-1">
-							
-							<img src="assets/img/KPMGlogo.png">
-							
-							<div class="container columnWork" id="school" style="width : 50vw">
-								<h2>EDS AI Data Engineering Intern</h2>
-								<h2>KPMG US</h2>
-								<h3>June - August 2024</h3>
-								<li>Integrated generative AI into software development lifecycle, integrating automatic optimizationand standardization into developers' workflow that saw a near 30% increase in developers' efficeny through streamlining development and vastly improving code readability</li>
-								<li>Oversaw optimization of FOT pipeline utilizing new optimization techniques and implemented major time complexity improvements in 30% of the codebase across thousands of lines of code form O(n<sup>2</sup>) to O(n log n) leading to a near 20% reduction in pipeline runtime</li>
-								<li>Researched potential modes to further integrate unit generation into SDLC to prioritize expanding code coverage of generated tests to streamline codebase improvement overhaul by integrating a complete end to end pipeline to automate SparkSQL to pySPARK conversion</li>
-								<li>Analyzed impact of Generative Ai in developpment of code and pipelines to determine the inherent benefit of services like chat GPT, CoPilot, and Databricks Ai in optimizing code and reducing overall company costs</li>
-							</div>
-							
-						</div>
+  <!-- ===================== FOOTER HORIZON ===================== -->
+  <footer style="position:relative;width:100%;background:#0C0C0E">
+    <div style="width:100%;height:130px;overflow:hidden;position:relative;border-bottom:2px solid #FF4500">
+      <img src="assets/img/sec3-matrix-coral.png" class="nsb-matrix" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.15; pointer-events: none">
+      <div style="position: absolute; inset: 0; background: linear-gradient(to bottom,rgba(12,12,14,0.55),rgba(12,12,14,0))"></div>
+    </div>
+    <div style="max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;padding:20px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-faint)">
+      <span>SYSTEM·3 // ETHAN HAARER · COGNITIVE MANIFOLD v2.1.0</span>
+      <x-import component-from-global-scope="NeuroSymbolicBrutalistDesignSystem_cd7104.Barcode" seed="EHAARER-2025" height="26" label="LAST BUILD · SEP 2025" tone="bone" hint-size="150px,42px"></x-import>
+    </div>
+  </footer>
 
-						<br>
-						<br>
-						<br>
-
-						<div class="container rowWork" id="education-title-1">
-							
-							<img src="assets/img/homesteaderslogo.webp">
-							<div class="container columnWork" id="school" style="width : 50vw">
-								<h2 >Enterprise Data Engineering Intern</h2>
-								<h2>Homesteader's Life Company</h2>
-								<h3>May - August 2022</h3>
-								<li>Developed and implemented an IT Asset Management system to reduce missing and orphaned assets, maximized useful life and ROI, providing greater insights into asset utilization, capacity management, maintenance expense, and asset depreciation</li>
-								<li>Reduced mean repair time by approximately 20% through Asset management system which maintatined accurate REST API to facilitate cross-organizational active updates to inventory and tracking, leading to an increase in ROI for over 1,300 assets</li>
-								<li>Developed data framework and integrated a new tracking system to manage asset ownership and forensic backlogging for IT and all departments; utilized Power BI and Postman</li>
-							</div>
-							
-						</div>
-
-						<br>
-						<br>
-						<br>
-
-						<div class="container rowWork" id="education-title-1">
-							
-							<!-- <img src="assets/img/hiveLogo.svg"> -->
-							<img src="assets/img/theHive.png">
-							<div class="container columnWork" id="school" style="width : 50vw">
-								<h2 >Peer Instructor</h2>
-								<h2>The Hive @ Georgia Tech</h2>
-								<h3>January 2022 - May 2024</h3>
-								<li>Assist and instruct hundreds of electrical engineers in prototyping and configuring projects from ideation to engineering, fabrication, testing and deployment. Frequently focused on rapid integration into exisitng project goals and accomplishments to aid end user's in project development, troubleshooting and ad hoc solutions</li>
-								<li>Led and facilitated hands-on workshops for over 150 electrical engineering students, focusing on advanced circuit design, PCB fabrication, and prototyping techniques. These workshops not only enhanced the practical skill sets of the participants but also contributed to a 25% increase in project completion rates, as students were better equipped to translate theoretical concepts into tangible prototypes.</li>
-								<li>Optimized the use and maintenance of lab resources, resulting in a 15% reduction in equipment downtime and a 10% decrease in material waste, ensuring sustainable operation of the makerspace.</li>
-								<li>Certified in technical toolsincluding general EE tools such as waveform generators and oscilloscopes, PCB fabrication, 3D printing, Laser Cutting, and Soldering</li>
-							</div>
-							
-						</div>
-
-					<!-- <div class="container column" id="coursework">
-						<h4>Relevant Coursework:</h4>
-						<p>Computer Science</p>
-						<ul>
-							<li>Computational Structures in Data Science (CS 88)</li>
-							<li>Data Structures (CS 61B)</li>
-						</ul>
-						<p>Mathematics</p>
-						<ul>
-							<li>Calculus II (Math 1B)</li>
-							<li>Calculus III (Math 53)</li>
-							<li>Linear Algebra and Differential Equations (Math 54)</li>
-						</ul>
-						<p>Data Science</p>
-						<ul>
-							<li>Foundations of Data Science (Data 8)</li>
-							<li>Principles and Techniques of Data Science (Data 100)</li>
-							<li>Probability in Data Science (Data 140)</li>
-							<li>Data Mining and Analytics (Data 144)</li>
-							<li>Advanced Inference Seminar (Data 188)</li>
-							<li>Data Engineering(Data 101)*</li>
-						</ul>
-						<p>Other</p>
-						<ul>
-							<li>Optimization methods in Engineering (EECS 127)</li>
-							<li>Introduction to Time Series (Stat 153)</li>
-							<li>Behind the Data: Humans and Values (INFO 188)*</li>
-							<li>Linear Programming and Network Flows (INDENG 162)*</li>
-							<li>Bayesian Statistics and Machine Learning in the Physical Sciences (PHYSICS 188)</li>
-						</ul>
-						<p id="progress">*in progress</p>
-					</div> -->
-				</div>
-			</section>
-			
-			<!--ALL ABOVE UPDATED-->
-
-			<!--Project Section-->
-			<section class="container column" id="project-section">
-				<h1 class="subtitle">FEATURED PROJECTS</h1>
-
-				Filter Buttons
-				<div class="contianer row" id="button-section">
-					<button class="filter-button active" onclick="filterSelection('all')">All</button>
-					<button class="filter-button" onclick="filterSelection('ML')">AI/ML</button>
-					<button class="filter-button" onclick="filterSelection('python')">Python</button>
-					<button class="filter-button" onclick="filterSelection('C/C++')">C/C++</button>
-					<button class="filter-button" onclick="filterSelection('hard')">Hardware</button>
-					<button class="filter-button" onclick="filterSelection('web')">Web Dev</button>
-				</div>
-
-				<!--Individual Projects-->
-				<!-- TODO: Add 2-3 more projects -->
-				<div class="container row" id="project-container">
-
-					<div class="each-project python ML hard">
-						<img class="proj-img" src="assets/img/outpost.png"/>
-						<div class="proj-description container column">
-							<div class="img-description">
-							  <h2>Outpost - The Wearable LLM Agent on the Edge</h2>
-							  <p>Outpost: a wearable, voice-enabled assistant running quantized LLaMA with RAG, onboard YOLO animal detection, and sensors for environmental hazard alerts—built for outdoor enthusiasts!</h3>
-							  <br>
-							  <a href="https://youtu.be/nAYswtqHOxs?si=FMCm42ozfOEVyLeJ" class="first-color">Here's the Demo Video</a>
-							  <br>
-							  <i>Uses a Raspberry Pi 5, and AI Camera, and framework built in Python</i>
-						  </div>
-						</div>
-					  </div>
-
-					<div class="each-project python ML web">
-						<img class="proj-img" src="assets/img/reggie.png"/>
-						<div class="proj-description container column">
-							<div class="img-description">
-							  <h2>Reggie - Gatech LLM Registration Chatbot</h2>
-							  <p>Chatbot utilizing LLM combined with RAG and live API-fed data to get registration logistical information, class slot openings and professor reviews for Georgia Tech</h3>
-							  <br>
-							  <a href="https://huggingface.co/spaces/RangDeBasanti/Reggie" class="first-color">Click here to check it out</a>
-							  <br>
-							  <a href="assets/ECE_8803R_Final_Project_Report.pdf" class="first-color">Development Documentation</a>
-							  <br>
-							  <a href="https://github.gatech.edu/averma332/CAI_Final" class="first-color">Github Repo</a>
-							  <br>
-							  <i>Built in Python using HuggingFace</i>
-						  </div>
-						</div>
-					  </div>
-
-					  <div class="each-project python ML">
-						<img class="proj-img" src="assets/img/CrossCultural.png"/>
-						<div class="proj-description container column">
-							<div class="img-description">
-							  <h2>Analyzing Cross Cultural Typicality in Language Models</h2>
-							  <p>A study that examines whether a multilingual large language model (GPT-4o) aligns with human typicality norms across five languages and mirrors human cognition.</h3>
-							  <br>
-							  <a href="assets/Cross Cultural Typicalities Final Merged Report.pdf" class="first-color">Link to the Study</a>
-							  <br>
-							  <a href="https://github.gatech.edu/mkalnik3/HMLProj" class="first-color">Github Repo</a>
-							  <br>
-							  <i>Used Python to collect and analyze GPT-4o dataset</i>
-						  </div>
-						</div>
-					  </div>
-
-					<div class="each-project python ML">
-						<img class="proj-img" src="assets/img/PersonPredict.jpg"/>
-						<div class="proj-description container column">
-							<div class="img-description">
-							  <h2>Predicting Pedestrian Positions with YOLOv5 and Gen Ai</h2>
-							  <p>Researched different methods to predict people's position in a top-down view with accurate distance estimation from POV images</h3>
-							  <br>
-							  <a href="assets/Translating pedestrian indoor images into maps.pdf" class="first-color">Full Paper Linked Here</a>
-							  <br>
-							  <a href="https://github.com/EHaarer/Translating-Pedestrian-Indoor-Images-into-Maps" class="first-color">Github Repo</a>
-							  <br>
-							  <i>Written in Python with Google Collab</i>
-						  </div>
-						</div>
-					  </div>
-
-					  <div class="each-project python ML web">
-						<img class="proj-img" src="assets/img/inspirlogo.jpg"/>
-						<div class="proj-description container column">
-							<div class="img-description">
-							  <h2>Inspiration AI - DnD Generative AI</h2>
-							  <p>Website to help DnD enthusiasts generate new locations, characters, quests, and more utilizing DnD REST API, LLMs, and stable diffusion models</h3>
-							  <br>
-							  <a href="https://inspiration-ai.streamlit.app/" class="first-color">Alpha Build Website</a>
-							  <br>
-							  <a href="https://github.com/EHaarer/Inspir-Ai-tion_The_DnD_Generative_AI" class="first-color">Github Repo</a>
-							  <br>
-							  <i>Built in Python using Streamlit</i>
-						  </div>
-						</div>
-					  </div>
-
-					  <div class="each-project python C/C++ ML">
-						<img class="proj-img" src="assets/img/TAILCobweb.jpg"/>
-						<div class="proj-description container column">
-							<div class="img-description">
-							  <h2>Deep Taxon Net - NeurIPS Publication</h2>
-							  <p>We introduce deep taxonomic networks, a novel deep latent variable approach to optimize a large latent hierarchy to automatically discover taxonomic structures and associated prototype clusters from unlabeled data</h3>
-							  <br>
-							  <a href="assets/Camera_Ready_DTN_NeurIPS_2025.pdf" class="first-color">Full Publication</a>
-							  <br>
-							  <a href="https://github.com/Teachable-AI-Lab/fast_cobweb" class="first-color">Github Repo</a>
-							  <br>
-							  <i>Built utilizing CUDA, PyTorch, and NumPy</i>
-						  </div>
-						</div>
-					  </div>
-
-					  <div class="each-project C/C++ hard">
-						<img class="proj-img" src="assets/img/DrinkMixerWireframe.png"/>
-						<div class="proj-description container column">
-							<div class="img-description">
-							  <h2>QUENCH - Robotic Bartending Machine</h2>
-							  <p>Prototpye drink mixer that decodes RFID card data to pour the perfect drink. Also hosts a native web server to request custom drinks over WiFi! </h3>
-							  <br>
-							  <a href="https://youtu.be/tKbe3_PHH2k" class="first-color">Demo Video</a>
-							  <br>
-							  <a href="https://github.com/EHaarer/QUENCH-The-Multimodal-Bartending-Robot?tab=readme-ov-file" class="first-color">Find the Code Here</a>
-							  <br>
-							  <i>Written in C using Arduino</i>
-						  </div>
-						</div>
-					  </div>
-
-					  <div class="each-project web python">
-						<img class="proj-img" src="assets/img/ItalyWebsiteScreenshot.png"/>
-						<div class="proj-description container column">
-							<div class="img-description">
-							  <h2>Mapping Crimes in Italy Capstone</h2>
-							  <p>Created a website for George Mason University to view and filter crimes in early Italy for historical research. Ability to upload custom maps and datasets</h3>
-							  <br>
-							  <a href="" class="first-color">Link to the Site</a>
-							  <br>
-							  <a href="https://github.com/jamaball/JIF-2355-Mapping-Violence-In-Modern-Italy" class="first-color">Github Page</a>
-							  <br>
-							  <i>Written using React, Javascript, and Python</i>
-						  </div>
-						</div>
-					  </div>
-
-					<!-- <div class="each-project python">
-					  <img class="proj-img" src="assets/img/Ants_Vs_Somebees.png"/>
-					  <div class="proj-description container column">
-					  	<div class="img-description">
-							<h2>Ants</h2>
-							<p>Spin off of the popular game Plants Vs. Zombies. Combines <b>functional</b> and <b>object-oriented</b> programming paradigms.</h3>
-							<br>
-							<br>
-							<i>Python</i>
-						</div>
-					  </div>
-					</div>
-
-					<div class="each-project python">
-					  <img class="proj-img" src="assets/img/Maps.png"/>
-					  <div class="proj-description container column">
-					  	<div class="img-description">
-							<h2>Maps</h2>
-							<p>Creating a map visualization tool for restaurants scores in berkeley using <b>machine learning</b> and <b>data scraped from yelp</b>.</p>
-							<br>
-							<i>Python</i>
-						</div>
-					  </div>
-					</div>
-					
-					<div class="each-project python">
-						<img class="proj-img" src="assets/img/House.png"/>
-						<div class="proj-description container column">
-							<div class="img-description">
-							  <h2>Housing Price Model</h2>
-							  <p>Created a model to <b>predict the price of homes</b> in Cooks County, Illinois. Achieved an <b>accuracy of 77%</b> on the validation set. </p>
-							  <br>
-							  <i>Java</i>
-						  </div>
-						</div>
-					  </div>
-
-					  <div class="each-project python">
-						<img class="proj-img" src="assets/img/Spam.png"/>
-						<div class="proj-description container column">
-							<div class="img-description">
-							  <h2>Spam v Ham Model</h2>
-							  <p>Created a model to <b>classify spam emails</b>. Acheived <b>87% accuracy</b> on unseen emails.</p>
-							  <br>
-							  <i>Java</i>
-						  </div>
-						</div>
-					  </div>
-
-					<div class="each-project java">
-					  <img class="proj-img" src="assets/img/BYOW.png"/>
-					  <div class="proj-description container column">
-					  	<div class="img-description">
-							<h2>Build Your Own World</h2>
-							<p>Created a seeded random tile world generator with playable characters <b>using keyboard and mouse input</b> each with a built-in HUD.</p>
-							<br>
-							<i>Java</i>
-						</div>
-					  </div>
-					</div>
-
-					<div class="each-project java">
-					  <img class="proj-img" src="assets/img/Wordnet.png"/>
-					  <div class="proj-description container column">
-					  	<div class="img-description">
-							<h2>Nordnet</h2>
-							<p>Build out a wordnet <b>graph from scratch</b> with over 10,000 words to visualize how the volume of printed words in English has changed over time</p>
-							<i>Java</i>
-						</div>
-					  </div>
-					</div>
-
-					<div class="each-project web">
-					  <img class="proj-img" src="assets/img/Website.png"/>
-					  <div class="proj-description container column">
-					  	<div class="img-description">
-							<h2>Personal Website</h2>
-							<br>
-							<a href="https://github.com/jrosen24/PersonalWebsite" target="_blank">Repo for this website</a>
-							<br>
-							<br>
-							<i>HTML / CSS / JavaScript</i>
-						</div>
-					  </div>
-					</div> -->
-
-				</div>
-			</section>
-
-
-			<!--Footer/Contact-->
-			<section class="container column" id="footer">
-				<div class="container row" id="social-container">
-					<a href="https://www.linkedin.com/in/ethan-haarer/" target="_blank">LinkedIn</a>
-					<span>•</span>
-					<a href="https://github.com/EHaarer" target="_blank">Github</a>
-					<span>•</span>
-					<a href="mailto:ethanldhaarer@gmail.com" target="_blank">Email</a>
-				</div>
-				<div>
-					<p id="copyright">Last Updated September 2025</p>
-				</div>
-			</section>
-			
-		</div>
-		<script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
-		<script src="assets/scripts/scripts.js"></script>
-
-	</body>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { open: {}, light: false };
+  renderVals() {
+    const light = !!this.state.light;
+    const workRows = [
+      { idx: '[01]', cat: 'WORK_EXP', title: 'AI/ML Software Engineer Intern',
+        desc: 'Space & Airborne Systems, inside Intel and Cyber sector. Prototyped LHXi voice-controlled ISR assistant at the Edge; built LLM multi-agent framework for reliability, explainability & trust in ML LLM deployments.',
+        meta: 'ISR · Intelligence · LLM · ISR · MCP · CI/CD · Computer Vision · Edge AI · Python', logo: 'assets/img/logo-l3harris-coral.png', time: 'May – August 2025' },
+      { idx: '[02]', cat: 'WORK_EXP', title: 'Graduate Research Assistant \n@Teachable AI Lab',
+        desc: 'Spearheaded the development of Deep Taxonomic Networks in a NeurIPS-accepted publication, achieving state-of-the-art unsupervised classification results. Developed cognitive-based, data efficient clustering architectures using continuously updated symbolic prototypes.',
+        meta: 'NEURO-SYMBOLIC · PYTORCH · Research · NumPy · Data Visualiztion · Tensorflow · Python', logo: 'assets/img/logo-gatech-coc-coral.png', time: 'August 2024 – September 2025' },
+      { idx: '[03]', cat: 'WORK_EXP', title: 'EDS AI Data Engineering Intern',
+        desc: 'Pioneered an AI-driven code optimization pipeline to modernize the ELT framework to successfully reduce the FOT pipeline\'s time complexity from O(n^2) to O(n log n) across 30% of the code resulting in 20% faster runtime while automating documentation generation.',
+        meta: 'GENerativve AI · SPARK · ELT Pipelines · Databricks · MS Data Factory · SQL', logo: 'assets/img/logo-kpmg-coral.png', time: 'May – August 2024' },
+    ];
+    const projectSpecs = [
+      { title: 'Waldo: \n Geospatial Inference via Multimodal Fine-Tuning', status: 'COMPLETE', classRef: 'GEO-ML',
+        meta: 'PYTHON · VLM · LoRA · Modality Alignment',
+        desc: 'This framework fine-tunes open-source vision-language models (Qwen-2-VL and InternVL) to perform precise geo-localization directly from global street-level imagery. By integrating a locatability-aware curriculum and a novel coordinate-span-weighted loss function, the architecture progressively trains on visually complex environments to predict exact continuous coordinates. At inference, the system employs Retrieval-Augmented Generation (RAG) to ground predictions using visual and geographic priors. Experimental evaluations reveal critical insights into the limitations of standard cross-entropy objectives for spatial mapping, offering a lightweight alternative to massive retrieval-only geolocation pipelines.',
+        img: 'assets/img/proj-waldo-coral.png',
+        actions: [ { label: 'ACCESS_REPOSITORY', href: 'https://github.com/EHaarer' }, { label: 'READ_WHITEPAPER', href: '#' } ] },
+      { title: 'Decision Transformers: \nEncoder Ablations for Offline RL', status: 'COMPLETE', classRef: 'SEQ-RL',
+        meta: 'PYTORCH · TRANSFORMER · GNN · ViT',
+        media: 'video',
+        video: 'assets/img/dt-hopper-rollout.mp4',
+        chart: 'assets/img/dt-node-l2-norm.png',
+        figA: 'FIG.A — HOPPER ROLLOUT', figB: 'FIG.B — NODE EMBEDDING L2 NORM',
+        chartAlt: 'Node embedding L2 norms over time for torso, thigh, shin and foot',
+        desc: 'This work re-frames reinforcement learning as conditional sequence modeling and interrogates the state-encoding bottleneck of the vanilla Decision Transformer. The shallow CNN visual encoder is replaced with a parameter-matched Vision Transformer whose patch-wise global attention lets the agent track distant entities in Ms. Pacman \u2014 lifting median return to the conditioned target where the CNN collapses. For continuous control, a Graph Neural Network encodes the Hopper morphology as a fixed kinematic graph (torso \u2192 thigh \u2192 shin \u2192 foot), injecting a physics prior that yields a +24.96% peak-return gain on Hopper-Expert. Per-node L2-norm telemetry (FIG.B) confirms the encoder internalizes the periodic air\u2192impact\u2192jump structure of locomotion, with the torso dominating balance and the thigh spiking at take-off.',
+        img: 'assets/img/dt-node-l2-norm.png',
+        actions: [ { label: 'READ_WHITEPAPER', href: 'https://github.gatech.edu/nvasan7/decision-transformers-ablations' }, { label: 'PRESENTATION_VIDEO', href: 'https://youtu.be/4INLULLvBp0' } ] },
+      { title: 'Simulating the Battle of the Chinese Farm with RL', status: 'COMPLETE', classRef: 'MARL',
+        meta: 'REINFORCEMENT LEARNING · MULTI-AGENT · NETLOGO',
+        media: 'video',
+        video: 'assets/img/chinesefarm-run.mp4',
+        chart: 'assets/img/chinesefarm-chart.png',
+        figA: 'FIG.A — TACTICAL ROLLOUT', figB: 'FIG.B — 3D INTERPOLATION · ISRAELI BRIDGEHEAD %',
+        chartAlt: '3D interpolation of Israeli bridgehead percentage across learning rate, discount factor and exploration factor',
+        desc: 'This project is an Agent-Based Model (ABM) simulating the October 1973 Battle of the Chinese Farm during the Yom Kippur War. Built using NetLogo, the simulation operates on a geographically accurate map that incorporates varying terrains, such as agricultural irrigation canals, water, and roads. The primary research question driving the simulation explores how the Egyptian army\'s rigid, risk-averse positioning impacted their territorial control against Israeli offensives. Instead of relying on static positional matrices, the model employs Q-learning algorithms to govern the actions of individual soldiers and tanks. These autonomous agents dynamically learn and adapt their battlefield strategies based on variable reward parameters, such as capturing strategic farm locations or defending bridgeheads, to emulate historical combat behaviors. \n\n\nBeyond historical analysis, the project serves a greater strategic purpose by quantifying traditionally qualitative military data. This allows contemporary military strategists to run dynamic models, pinpoint critical operational failures like inflexible counter-attacks or poor inter-divisional communication, and properly identify the tactical investments needed to turn the tide in modern warfare.',
+        img: 'assets/img/proj-chinesefarm-coral.png',
+        actions: [ { label: 'ACCESS_PRESENTATION', href: 'https://github.com/EHaarer' }, { label: 'SIMULATION_REPO', href: '#' } ] },
+      { title: 'Outpost: \nWearable Multimodal Off-grid Edge AI Guide', status: 'PROTOTYPE', classRef: 'EDGE-AI',
+        meta: 'PYTHON · OLLAMA · RAG · YOLO · Computer Vision',
+        desc: 'Outpost introduces a completely decentralized hardware-software package engineered to provide contextual navigation and environmental survival assistance in communication-deprived environments. Operating entirely on low-power edge compute sensors and boards, the system deploys 4-bit quantized multimodal array of AI models including Llama, YOLOv5, and more, capable of real-time audio-visual analysis with RAG retrieval to enable agent answers to be well-informed for survival situations. An on-board passive environment-detection system warns users of dangers like low oxygen count and long exposure times to extreme temperatures so operators can focus on their tasks with their needs being monitored for them. All utilized compute lies on-board at the Edge and can support general use of up to 10 hours per charge.',
+        media: 'obj', model: 'assets/models/outpost.obj', modelRotX: -Math.PI/2,
+        img: 'assets/img/proj-outpost-coral.png',
+        actions: [ { label: 'ACCESS_REPOSITORY', href: 'https://github.com/EHaarer' }, { label: 'WATCH_VIDEO_DEMO', href: '#' } ] },
+      { title: 'Predicting Pedestrian Position from Street-view Imagery', status: 'COMPLETE', classRef: 'SPATIAL-ML',
+        meta: 'PYTHON · DEPTH-EST · GEOMETRY',
+        desc: 'This project leverages spatial depth estimations and perspective mapping to predict continuous pedestrian trajectories directly within complex urban street-view environments. By training neural models to interpret monocular geometric distortions, the system infers volumetric coordinate boundaries without native active sensor arrays. The pipeline fuses raw visual tracking markers with symbolic physics engines to prevent unrealistic trajectory paths through structural layout obstacles. Benchmark testing shows competitive positional estimation metrics across crowded metropolitan intersections.',
+        img: 'assets/img/proj-pedestrian-coral.png',
+        actions: [ { label: 'READ_WHITEPAPER', href: 'https://github.com/EHaarer' } ] },
+      { title: 'Inspiration AI: \nGenerative AI for Dungeons and Dragons', status: 'DWN_4_Maintence', classRef: 'NEURO-SYM',
+        meta: 'PYTHON · STREAMLIT · DIFFUSION',
+        desc: 'Inspiration AI acts as a neuro-symbolic game engine designed to generate structurally coherent narratives, mechanics, and character sheets for tabletop roleplaying frameworks. The system uses LLMs to author creative lore, while simultaneously using a hard-coded symbolic rule parser to ensure absolute mathematical compliance with core game mechanics. By binding flexible semantic generations within deterministic constraints, it eliminates hallucinated rules and stat discrepancies typical of standard generative text tools. The final interface delivers seamless interactive game-mastering assistance across long-term campaigns.',
+        img: 'assets/img/proj-inspiration-coral.png',
+        actions: [ { label: 'ACCESS_DEMO', href: 'https://github.com/EHaarer' }, { label: 'ACCESS_REPO', href: '#' } ] },
+      { title: 'QUENCH: Robotic Bartender', status: 'PROTOTYPE', classRef: 'ROBOTICS',
+        meta: 'C · ARDUINO · WI-FI Enabled · I2C · SPI · HARDWARE',
+        desc: 'QUENCH is multimodal drink mixing machine, utilizing an Arduino Uno R4 to handle user drink requests either by RFID card\nand decoding card data, or through a web server to make custom drink combinations, accessible via a displayed QR code that links to a hosted server propped up on the connected Wi-Fi network. The pumps are modified peristaltic pumps that use rotary encoding with an IR sensor to ensure drink volume is consistent across every pour, regardless of viscosity or water pressure. Every input liquid is refillable through and easy-swap system. Has a cup-detection system that only pours if drink is present to avoid spillage.',
+        media: 'obj', model: 'assets/models/quench.obj', modelRotX: -Math.PI/2,
+        img: 'assets/img/proj-quench-coral.png',
+        actions: [ { label: 'ACCESS_REPO', href: 'https://github.com/EHaarer' }, { label: 'SYSTEM_DEMO_VIDEO', href: '#' } ] },
+    ];
+    const openSet = this.state.open || {};
+    const projectRows = projectSpecs.map((p, i) => ({
+      ...p,
+      code: 'PROJ-' + String(i + 1).padStart(2, '0'),
+      isVideo: p.media === 'video',
+      isObj: p.media === 'obj',
+      modelRotX: p.modelRotX || 0,
+      modelRotZ: p.modelRotZ || 0,
+      isImg: p.media !== 'video' && p.media !== 'obj',
+      notVideo: p.media !== 'video',
+      figA: p.figA || 'FIG.A', figB: p.figB || 'FIG.B',
+      chartAlt: p.chartAlt || '',
+      videoWrapStyle: 'position:relative;background:#000;overflow:hidden;border-bottom:1px solid rgba(255,69,0,0.35);' + ((p.video && p.video.indexOf('chinesefarm') !== -1) ? 'aspect-ratio:982 / 902;' : ''),
+      videoStyle: (p.video && p.video.indexOf('chinesefarm') !== -1)
+        ? 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:195.5%;height:auto;filter:grayscale(1) contrast(1.15) brightness(0.82)'
+        : 'display:block;width:100%;height:auto;transform-origin:center;filter:grayscale(1) contrast(1.35) brightness(1.06)',
+      imgGlow: (p.img && p.img.indexOf('waldo') !== -1) ? 'none' : 'drop-shadow(0 0 10px rgba(255,69,0,0.25))',
+      expanded: !!openSet[i],
+      sign: openSet[i] ? '\u2212' : '+',
+      onToggle: () => this.setState(s => ({ open: { ...(s.open || {}), [i]: !((s.open || {})[i]) } })),
+    }));
+    const nodes = [
+      { key: 'GITHUB', val: 'github.com/EHaarer', href: 'https://github.com/EHaarer' },
+      { key: 'LINKEDIN', val: 'linkedin.com/in/ethan-haarer', href: 'https://www.linkedin.com/in/ethan-haarer/' },
+      { key: 'ARXIV', val: 'arxiv.org/a/haarer_e', href: 'https://arxiv.org/search/cs?searchtype=author&query=Haarer,+E+L' },
+      { key: 'SCHOLAR', val: 'scholar.google — [add link]', href: '#' },
+      { key: 'RESUME', val: 'assets/Resume.pdf', href: 'assets/Resume.pdf' },
+      { key: 'EMAIL', val: 'ethanldhaarer@gmail.com', href: 'mailto:ethanldhaarer@gmail.com' },
+    ];
+    return {
+      workRows, projectRows, nodes,
+      light,
+      rootClass: light ? 'nsb-light' : '',
+      themeLabel: light ? 'DARK MODE' : 'LIGHT MODE',
+      toggleTheme: () => this.setState(s => ({ light: !s.light })),
+      playVideo: (el) => { if (el) { el.muted = true; const p = el.play(); if (p && p.catch) p.catch(() => {}); } },
+      sendPacket: () => {
+        const id = document.getElementById('f-id');
+        const msg = document.getElementById('f-msg');
+        const subj = encodeURIComponent('INBOUND PACKET // ' + ((id && id.value) || 'anon'));
+        const body = encodeURIComponent((msg && msg.value) || '');
+        window.location.href = 'mailto:ethanldhaarer@gmail.com?subject=' + subj + '&body=' + body;
+      },
+    };
+  }
+}
+</script>
+</body>
 </html>
-
