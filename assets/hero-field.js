@@ -1,8 +1,8 @@
 /* <hero-field color="#FF4500"> — FIG.01 on the hero: topographic contour lines over a slowly drifting
    noise surface, every fourth line brighter. The surface is sampled on a grid sized from the box's own
    width and height, so the figure fills the space at any screen size. Canvas 2D, crisp on high-DPI
-   screens; ~30 fps (the drift is slow); paused off-screen; a single still frame under
-   prefers-reduced-motion. The pointer raises a soft hill that the lines flow around. */
+   screens; ~30 fps (the drift is slow); paused off-screen. It animates even when the OS asks for
+   reduced motion, by the site owner's choice. The pointer raises a soft hill that the lines flow around. */
 (function () {
   'use strict';
   const CELL = 9;          // sampling grid in px; marching squares runs over its cells
@@ -57,7 +57,6 @@
       const rgb = parseColor(el.getAttribute('color') || '#FF4500').join(',');
       const minorStyle = 'rgba(' + rgb + ',0.3)', majorStyle = 'rgba(' + rgb + ',0.85)';
       const noise = gradientNoise(7);
-      const still = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
       let W = 0, H = 0, cols = 0, rows = 0, F = null, t = 0;
       let ptr = null, pw = 0, px = 0, py = 0;
@@ -112,18 +111,19 @@
         F = new Float32Array(cols * rows);
         cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        draw(0); // paint at once (and this is the only frame under reduced motion)
+        draw(0); // paint at once rather than waiting for the next animation frame
       }
 
       let raf = 0, running = false, last = 0;
       function tick(now) {
         raf = requestAnimationFrame(tick);
-        if (last && now - last < FRAME_MS) return;
+        // ~30 fps; the slack keeps a 60 Hz display on every second frame despite timer jitter
+        if (last && now - last < FRAME_MS - 4) return;
         const dt = last ? Math.min(0.1, (now - last) / 1000) : 0;
         last = now;
         if (W) draw(dt);
       }
-      function start() { if (!running && !still) { running = true; last = 0; raf = requestAnimationFrame(tick); } }
+      function start() { if (!running) { running = true; last = 0; raf = requestAnimationFrame(tick); } }
       function stop() { running = false; cancelAnimationFrame(raf); }
 
       const ro = new ResizeObserver(resize);
