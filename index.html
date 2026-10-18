@@ -20,6 +20,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="assets/obj-wireframe.js"></script>
 <script src="assets/axis-globe.js"></script>
+<script src="assets/hero-field.js"></script>
 <style>
   *{box-sizing:border-box}
   html{scroll-behavior:smooth;scroll-padding-top:56px}
@@ -153,12 +154,12 @@
           <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid rgba(255,69,0,0.35);font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-faint)">
             <span>FIG.01 — COGNITIVE MESH</span><span style="color:#FF4500">R · MAPPED</span>
           </div>
-          <div class="eh-hero-figbox" style="position:relative;flex:1;min-height:420px;background:#0C0C0E;background-image:radial-gradient(rgba(255,69,0,0.10) 0.8px,transparent 1px);background-size:14px 14px;display:flex;align-items:center;justify-content:center;overflow:hidden">
-            <img src="assets/img/hero-figure-coral.png" alt="Human figure bound within a spherical coordinate graph" style="width:112%;max-width:none;filter:drop-shadow(0 0 12px rgba(255,69,0,0.35))">
+          <div class="eh-hero-figbox" style="position:relative;flex:1;min-height:420px;background:#0C0C0E;overflow:hidden">
+            <x-import component-from-global-scope="hero-field" color="#FF4500" aria-hidden="true" hint-size="100%,100%" style="position:absolute;inset:0;width:100%;height:100%"></x-import>
           </div>
           <div style="padding:12px 14px;border-top:1px solid rgba(255,69,0,0.35);font-family:var(--font-mono);font-size:9px;line-height:1.7;letter-spacing:0.06em;color:var(--text-muted)">
-            <div><span style="color:var(--text-faint)">·</span> figure ∈ spherical coordinate graph</div>
-            <div><span style="color:var(--text-faint)">·</span> human cognition ↔ machine mesh</div>
+            <div><span style="color:var(--text-faint)">·</span> surface ∈ latent energy field</div>
+            <div><span style="color:var(--text-faint)">·</span> isolines ↔ concept boundaries</div>
             <div><span style="color:#FF4500">·</span> threshold: neuro-symbolic binding</div>
           </div>
         </div>
