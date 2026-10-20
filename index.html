@@ -21,6 +21,7 @@
 <script src="assets/obj-wireframe.js"></script>
 <script src="assets/axis-globe.js"></script>
 <script src="assets/hero-field.js?v=2"></script>
+<script src="assets/tall-text.js?v=1"></script>
 <style>
   *{box-sizing:border-box}
   html{scroll-behavior:smooth;scroll-padding-top:56px}
@@ -32,12 +33,21 @@
   .nsb-light{filter:invert(1) hue-rotate(180deg)!important}
   /* counter-invert media so photos, logos, chart & video keep their true palette */
   .nsb-light img:not(.nsb-flip):not(.nsb-matrix),.nsb-light video{filter:invert(1) hue-rotate(180deg)!important}
-  /* coral wire-texture in light mode: let the root invert flip black bg → white while
-     hue-rotate preserves the coral lines; just raise opacity for foreground contrast */
-  .nsb-light .nsb-matrix{opacity:0.48!important;filter:saturate(0.8)!important}
   /* RESPONSIVE — layout lives in inline styles, so narrow-screen overrides need !important */
   /* "HAARER" is ~7em wide in Syne 800: size it from the 65% hero column so it never spills */
   .eh-h1{font-size:clamp(40px,calc(9.3vw - 12px),108px)!important}
+  /* section headings: stretch the wide display face 30% taller; extra line height makes room */
+  .eh-tall{display:inline-block;transform:scaleY(1.3);transform-origin:50% 55%}
+  .eh-h1{line-height:1.04!important}
+  .eh-h2,.eh-chan h2{line-height:1.1!important}
+  /* sub-headings wrap freely, so the whole block is stretched from its top; assets/tall-text.js adds the
+     matching space underneath. One-line toggle titles stretch about their centre inside the row padding. */
+  .eh-tallb{transform:scaleY(1.3);transform-origin:0 0}
+  /* highlighted phrase in a paper title: always-on orange block, dark text */
+  .eh-hl{background:#FF4500;color:#0C0C0E;padding:0 0.12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+  .eh-tallc{transform:scaleY(1.3);transform-origin:50% 50%}
+  /* body copy grey: ~20% more contrast against the background than --text-muted (#8C8C82) */
+  :root{--text-read:#9A9A8F}
   /* paper images have fixed pixel widths; let the columns shrink and the image boxes crop them */
   .eh-papers{grid-template-columns:repeat(3,minmax(0,1fr))!important}
   @media (max-width:1079px){
@@ -129,23 +139,23 @@
         <div class="eh-hero-main" style="padding:56px 40px 48px;border-right:1px solid rgba(255,69,0,0.35)">
           <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:22px">[ MACHINE LEARNING RESEARCHER ]</div>
           <h1 class="eh-h1" style="margin:0;font-family:var(--font-display);font-weight:800;line-height:0.86;letter-spacing:-0.04em;text-transform:uppercase;font-size:clamp(52px,8.5vw,116px);color:var(--bone-white)">
-            ETHAN<br><span style="color:transparent;-webkit-text-stroke:2px #FF4500">HAARER</span>
+            <span class="eh-tall">ETHAN</span><br><span class="eh-tall" style="color:transparent;-webkit-text-stroke:2px #FF4500">HAARER</span>
           </h1>
           <div style="margin-top:22px;font-family:var(--font-mono);font-size:13px;letter-spacing:0.08em;color:#FF4500;text-transform:uppercase;border-top:1px solid rgba(255,69,0,0.4);border-bottom:1px solid rgba(255,69,0,0.4);padding:12px 0">SYS.REF // COGNITIVE-INSPIRED ARCHITECTURES</div>
-          <p style="margin:26px 0 0;max-width:56ch;font-family:var(--font-mono);font-size:14px;line-height:1.65;color:var(--bone-white)">
-            I am currently a&nbsp;<span style="color: rgb(255, 69, 0);">Founding Engineer</span>&nbsp;at a [STEALTH STARTUP] where I predominately develop cognitive-inspired ML systems. Our research predominantly revolves around&nbsp;<span style="color: rgb(255, 69, 0);">Representation Learning</span>, <font color="#ff4500">Novel ML Algorithms</font>, and&nbsp;<span style="color: rgb(255, 69, 0);">Mechanistic Interpretability</span>.</p>
-          <p style="margin: 16px 0 0; max-width: 56ch; font-family: var(--font-mono); font-size: 13px; line-height: 1.65; color: var(--text-muted)">My research Interests lie in Neuro-Symbolic AI, specifically in cognitive-inspired systems that learn continuously from few examples, grow their own concept hierarchies the way people do, and stay explainable and interpretable at every layer.&nbsp;<br>I also enjoy deploying Edge AI to see how far we can push local compute to aid those in the field.</p>
+          <p style="margin:26px 0 0;max-width:56ch;font-family:var(--font-mono);font-size:16px;line-height:1.65;color:var(--bone-white)">
+            I am currently a&nbsp;<span style="color: rgb(255, 69, 0);">Founding Engineer</span>&nbsp;at a stealth startup where I predominately develop cognitive-inspired ML systems. Our research predominantly revolves around&nbsp;<span style="color: rgb(255, 69, 0);">Representation Learning</span>, <font color="#ff4500">Novel ML Algorithms</font>, and&nbsp;<span style="color: rgb(255, 69, 0);">Mechanistic Interpretability</span>.</p>
+          <p style="margin: 16px 0 0; max-width: 56ch; font-family: var(--font-mono); font-size: 15px; line-height: 1.65; color: var(--text-read)">My research Interests lie in Neuro-Symbolic AI, specifically in cognitive-inspired systems that learn continuously from few examples, grow their own concept hierarchies the way people do, and stay explainable and interpretable at every layer.<span style="display:block;height:12px"></span>I also enjoy deploying Edge AI to see how far we can push local compute to aid those in the field.</p>
           <!-- education telemetry -->
           <div class="eh-edu" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:36px;border:1px solid rgba(220,220,207,0.18);background:rgba(220,220,207,0.18)">
             <div style="background:#0C0C0E;padding:16px 18px">
               <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted)">EDU_NODE · 01</div>
-              <div style="font-family:var(--font-display);font-weight:800;font-size:20px;letter-spacing:-0.01em;text-transform:uppercase;color:var(--bone-white);margin-top:8px;line-height:1">M.S. COMPUTER SCIENCE</div>
-              <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-muted);margin-top:8px;line-height:1.5">Georgia Institute of Technology<br>Machine Learning Specialization · <span data-om-label="Dec 2025" style="color: rgb(255, 69, 0);">Dec 2025</span></div>
+              <div class="eh-tallb" style="font-family:var(--font-display);font-weight:800;font-size:20px;letter-spacing:-0.01em;text-transform:uppercase;color:var(--bone-white);margin-top:8px;line-height:1">M.S. COMPUTER SCIENCE</div>
+              <div style="font-family:var(--font-mono);font-size:13px;color:var(--text-read);margin-top:8px;line-height:1.5">Georgia Institute of Technology<br><span style="color:#FF4500">Machine Learning Specialization</span></div>
             </div>
             <div style="background:#0C0C0E;padding:16px 18px">
               <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted)">EDU_NODE · 02</div>
-              <div style="font-family:var(--font-display);font-weight:800;font-size:20px;letter-spacing:-0.01em;text-transform:uppercase;color:var(--bone-white);margin-top:8px;line-height:1">B.S. COMPUTER SCIENCE</div>
-              <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-muted);margin-top:8px;line-height:1.5">Georgia Institute of Technology<br>Intelligence &amp; Devices · Summa Cum Laude · <span style="color: rgb(255, 69, 0);">May 2024</span></div>
+              <div class="eh-tallb" style="font-family:var(--font-display);font-weight:800;font-size:20px;letter-spacing:-0.01em;text-transform:uppercase;color:var(--bone-white);margin-top:8px;line-height:1">B.S. COMPUTER SCIENCE</div>
+              <div style="font-family:var(--font-mono);font-size:13px;color:var(--text-read);margin-top:8px;line-height:1.5">Georgia Institute of Technology<br><span style="color:#FF4500">Intelligence &amp; Devices</span> · Summa Cum Laude</div>
             </div>
           </div>
         </div>
@@ -170,7 +180,7 @@
           </div>
           <span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-faint)">N = 003 FEATURED</span>
         </div>
-        <h2 class="eh-h2" style="margin:14px 0 0;font-family:var(--font-display);font-weight:800;font-size:clamp(40px,5.5vw,72px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;color:var(--bone-white)">Research <span style="color:transparent;-webkit-text-stroke:1.5px #FF4500">Publications</span></h2>
+        <h2 class="eh-h2" style="margin:14px 0 0;font-family:var(--font-display);font-weight:800;font-size:clamp(40px,5.5vw,72px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;color:var(--bone-white)"><span class="eh-tall">Research</span> <span class="eh-tall" style="color:transparent;-webkit-text-stroke:1.5px #FF4500">Publications</span></h2>
       </div>
       <div class="eh-papers" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(255,69,0,0.35)">
 
@@ -182,14 +192,15 @@
           </div>
           <div style="padding:20px 18px 22px;display:flex;flex-direction:column;flex:1">
             <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted)">UNSUPERVISED · LATENT_REP · EMERGENT</div>
-            <h3 class="eh-paper-title" style="margin:12px 0 0;font-family:var(--font-display);font-weight:800;font-size:22px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;color:var(--bone-white)">Deep Taxonomic Networks for Unsupervised Hierarchical Prototype Discovery</h3>
-            <p style="margin:14px 0 0;font-family:var(--font-mono);font-size:11px;line-height:1.6;color:var(--text-muted)">A deep latent-variable approach that optimizes a large latent hierarchy to automatically discover taxonomic structure and prototype clusters directly from unlabeled data; statistical optimization walking a gradient space toward emergent topology.</p>
+            <h3 class="eh-paper-title eh-tallb" style="margin:12px 0 0;font-family:var(--font-display);font-weight:800;font-size:22px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;color:var(--bone-white)"><span class="eh-hl">Deep Taxonomic Networks</span> for Unsupervised Hierarchical Prototype Discovery</h3>
+            <p style="margin:14px 0 0;font-family:var(--font-mono);font-size:13px;line-height:1.6;color:var(--text-read)">A deep latent-variable approach that optimizes a large latent hierarchy to automatically discover taxonomic structure and prototype clusters directly from unlabeled data; statistical optimization walking a gradient space toward emergent topology.</p>
             <div style="display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 18px">
               <span style="font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 7px;border:1px solid rgba(220,220,207,0.35);color:var(--text-muted)">VAE</span>
               <span style="font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 7px;border:1px solid rgba(220,220,207,0.35);color:var(--text-muted)">MIX_OF_GAUSS</span>
               <span style="font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 7px;border:1px solid #FF4500;color:#FF4500">NeurIPS 2025</span>
+              <span style="font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 7px;border:1px solid #FF4500;color:#FF4500">PATENT PENDING</span>
             </div>
-            <a href="https://arxiv.org/abs/2509.23602" style="margin-top:auto;display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#FF4500;transition:gap 120ms" style-hover="gap:14px">READ ON ARXIV→</a>
+            <a href="https://arxiv.org/abs/2509.23602" style="margin-top:auto;display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#FF4500;transition:gap 120ms" style-hover="gap:14px">READ ON ARXIV <span aria-hidden="true" style="font-size:15px;line-height:1">↗</span></a>
           </div>
         </article>
 
@@ -201,14 +212,15 @@
           </div>
           <div style="padding:20px 18px 22px;display:flex;flex-direction:column;flex:1">
             <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted)">NEURO-SYMBOLIC · INTERPRETABLE · KNOWLEDGE_REP</div>
-            <h3 class="eh-paper-title" style="margin:12px 0 0;font-family:var(--font-display);font-weight:800;font-size:22px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;color:var(--bone-white)">Taxonomic Networks: A Representation for Neuro-Symbolic Pairing</h3>
-            <p style="margin:14px 0 0;font-family:var(--font-mono);font-size:11px;line-height:1.6;color:var(--text-muted)">Frames taxonomic networks as the shared representation that pairs connectionist learning with symbolic structure: top-down symbol instantiation and discrete knowledge routing over a learned abstraction tree that stays inspectable.</p>
+            <h3 class="eh-paper-title eh-tallb" style="margin:12px 0 0;font-family:var(--font-display);font-weight:800;font-size:22px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;color:var(--bone-white)"><span class="eh-hl">Taxonomic Networks</span>: A Representation for Neuro-Symbolic Pairing</h3>
+            <p style="margin:14px 0 0;font-family:var(--font-mono);font-size:13px;line-height:1.6;color:var(--text-read)">Frames taxonomic networks as the shared representation that pairs connectionist learning with symbolic structure: top-down symbol instantiation and discrete knowledge routing over a learned abstraction tree that stays inspectable.</p>
             <div style="display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 18px">
               <span style="font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 7px;border:1px solid rgba(220,220,207,0.35);color:var(--text-muted)">Symbolic</span>
               <span style="font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 7px;border:1px solid rgba(220,220,207,0.35);color:var(--text-muted)">Cobweb</span>
               <span style="font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 7px;border:1px solid #FF4500;color:#FF4500">NEUS'25</span>
+              <span style="font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 7px;border:1px solid #FF4500;color:#FF4500">PATENT PENDING</span>
             </div>
-            <a href="https://arxiv.org/abs/2505.24601" style="margin-top:auto;display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#FF4500;transition:gap 120ms" style-hover="gap:14px">READ ON ARXIV →</a>
+            <a href="https://arxiv.org/abs/2505.24601" style="margin-top:auto;display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#FF4500;transition:gap 120ms" style-hover="gap:14px">READ ON ARXIV <span aria-hidden="true" style="font-size:15px;line-height:1">↗</span></a>
           </div>
         </article>
 
@@ -220,14 +232,14 @@
           </div>
           <div style="padding:20px 18px 22px;display:flex;flex-direction:column;flex:1">
             <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted)">COGNITIVE · ALIGNMENT · MULTILINGUAL</div>
-            <h3 class="eh-paper-title" style="margin:12px 0 0;font-family:var(--font-display);font-weight:800;font-size:22px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;color:var(--bone-white)">Cross-Language Typicality Effects in a Multilingual Large Language Model</h3>
-            <p style="margin:14px 0 0;font-family:var(--font-mono);font-size:11px;line-height:1.6;color:var(--text-muted)">Tests whether GPT-4o aligns with human typicality norms across five languages, probing the synchronization of statistical neural maps with the structured, human-like conceptual frameworks they must mirror.<br><br></p>
+            <h3 class="eh-paper-title eh-tallb" style="margin:12px 0 0;font-family:var(--font-display);font-weight:800;font-size:22px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;color:var(--bone-white)"><span class="eh-hl">Cross-Language Typicality</span> Effects in a Multilingual Large Language Model</h3>
+            <p style="margin:14px 0 0;font-family:var(--font-mono);font-size:13px;line-height:1.6;color:var(--text-read)">Tests whether GPT-4o aligns with human typicality norms across five languages, probing the synchronization of statistical neural maps with the structured, human-like conceptual frameworks they must mirror.<br><br></p>
             <div style="display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 18px">
               <span style="font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 7px;border:1px solid rgba(220,220,207,0.35);color:var(--text-muted)">GPT-4o</span>
               <span style="font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 7px;border:1px solid rgba(220,220,207,0.35);color:var(--text-muted)">Cognition</span>
               <span style="font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 7px;border:1px solid #FF4500;color:#FF4500">COGSCI'25</span>
             </div>
-            <a href="https://escholarship.org/uc/item/6n50w46w" style="margin-top:auto;display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#FF4500;transition:gap 120ms" style-hover="gap:14px">LINK TO RESEARCH →</a>
+            <a href="https://escholarship.org/uc/item/6n50w46w" style="margin-top:auto;display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#FF4500;transition:gap 120ms" style-hover="gap:14px">LINK TO RESEARCH <span aria-hidden="true" style="font-size:15px;line-height:1">↗</span></a>
           </div>
         </article>
       </div>
@@ -235,7 +247,6 @@
 
     <!-- ===================== SECTION 03 — WORK EXPERIENCE ===================== -->
     <section id="sec03" data-screen-label="03 · Work Experience" style="position:relative;border-bottom:2px solid #FF4500;overflow:hidden">
-      <img src="assets/img/sec3-matrix-coral.png" class="nsb-matrix" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.15;pointer-events:none">
       <div style="position:relative">
         <div style="padding:26px 20px 24px;border-bottom:2px solid #FF4500;background:rgba(12,12,14,0.6)">
           <div class="eh-bar" style="display:flex;align-items:center;justify-content:space-between">
@@ -244,7 +255,7 @@
             </div>
             <span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-faint)">N = 003 · deployment log</span>
           </div>
-          <h2 class="eh-h2" style="margin:14px 0 0;font-family:var(--font-display);font-weight:800;font-size:clamp(40px,5.5vw,72px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;color:var(--bone-white)">Work <span style="color:transparent;-webkit-text-stroke:1.5px #FF4500">Experience</span></h2>
+          <h2 class="eh-h2" style="margin:14px 0 0;font-family:var(--font-display);font-weight:800;font-size:clamp(40px,5.5vw,72px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;color:var(--bone-white)"><span class="eh-tall">Work</span> <span class="eh-tall" style="color:transparent;-webkit-text-stroke:1.5px #FF4500">Experience</span></h2>
         </div>
         <!-- column header -->
         <div class="eh-work-head" style="display:grid;grid-template-columns:70px 290px 1fr 160px;background:rgba(12,12,14,0.55);border-bottom:2px solid #FF4500;font-family:var(--font-mono);font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted)">
@@ -260,8 +271,8 @@
               <img src="{{ r.logo }}" alt="" style="max-width: 246px; max-height: 81px; object-fit: contain; object-position: left center">
             </div>
             <div class="eh-w-body" style="padding:24px 14px;color:inherit">
-              <div style="font-family:var(--font-display);font-weight:800;font-size:18px;letter-spacing:-0.01em;text-transform:uppercase;line-height:1.05;color:inherit">{{ r.title }}</div>
-              <div style="font-family:var(--font-mono);font-size:11px;line-height:1.65;color:inherit;opacity:0.72;margin-top:8px;max-width:72ch">{{ r.desc }}</div>
+              <div class="eh-tallb" style="font-family:var(--font-display);font-weight:800;font-size:18px;letter-spacing:-0.01em;text-transform:uppercase;line-height:1.05;color:inherit">{{ r.title }}</div>
+              <div style="font-family:var(--font-mono);font-size:13px;line-height:1.65;color:inherit;opacity:0.79;margin-top:8px;max-width:72ch">{{ r.desc }}</div>
               <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:inherit;opacity:0.55;margin-top:10px">{{ r.meta }}</div>
             </div>
             <div class="eh-w-time" style="padding: 26px 14px; font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.5; color: inherit; text-align: right">{{ r.time }}</div>
@@ -279,7 +290,7 @@
           </div>
           <span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-faint)">N = 008 · CLICK ROW TO TOGGLE [ ± ]</span>
         </div>
-        <h2 class="eh-h2" style="margin:14px 0 0;font-family:var(--font-display);font-weight:800;font-size:clamp(40px,5.5vw,72px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;color:var(--bone-white)">Projects <span style="color:transparent;-webkit-text-stroke:1.5px #FF4500">Showcase</span></h2>
+        <h2 class="eh-h2" style="margin:14px 0 0;font-family:var(--font-display);font-weight:800;font-size:clamp(40px,5.5vw,72px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;color:var(--bone-white)"><span class="eh-tall">Projects</span> <span class="eh-tall" style="color:transparent;-webkit-text-stroke:1.5px #FF4500">Showcase</span></h2>
       </div>
 
       <sc-for list="{{ projectRows }}" as="r" hint-placeholder-count="6">
@@ -289,7 +300,7 @@
             <span style="flex:0 0 auto;font-size:13px;font-weight:700;color:inherit;width:20px;text-align:center">[{{ r.sign }}]</span>
             <span class="eh-proj-code" style="flex:0 0 auto;font-size:11px;font-weight:700;letter-spacing:0.12em;color:inherit">{{ r.code }}</span>
             <span class="eh-proj-sep" style="flex:0 0 auto;font-size:11px;color:inherit;opacity:0.5">//</span>
-            <span class="eh-proj-title" style="flex: 1 1 auto; font-family: var(--font-display); font-weight: 800; font-size: 16px; letter-spacing: -0.01em; text-transform: uppercase; line-height: 1.05; color: var(--bone-white)">{{ r.title }}</span>
+            <span class="eh-proj-title eh-tallc" style="flex: 1 1 auto; font-family: var(--font-display); font-weight: 800; font-size: 16px; letter-spacing: -0.01em; text-transform: uppercase; line-height: 1.05; color: var(--bone-white)">{{ r.short }}</span>
             <span class="eh-proj-class" style="flex:0 0 auto;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:inherit;opacity:0.7">{{ r.classRef }}</span>
           </button>
 
@@ -341,7 +352,7 @@
               <!-- RIGHT · METADATA -->
               <div class="eh-proj-body" style="padding:18px 28px 20px">
                 <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-faint)">TITLE</div>
-                <h3 class="eh-proj-h3" style="margin:6px 0 0;font-family:var(--font-display);font-weight:800;font-size:clamp(20px,2.4vw,30px);line-height:0.98;letter-spacing:-0.02em;text-transform:uppercase;color:var(--bone-white)">{{ r.title }}</h3>
+                <h3 class="eh-proj-h3 eh-tallb" style="margin:6px 0 0;font-family:var(--font-display);font-weight:800;font-size:clamp(20px,2.4vw,30px);line-height:0.98;letter-spacing:-0.02em;text-transform:uppercase;color:var(--bone-white)">{{ r.title }}</h3>
 
                 <div style="display:flex;flex-wrap:wrap;gap:18px;margin-top:12px;padding:10px 0;border-top:1px solid rgba(255,69,0,0.35);border-bottom:1px solid rgba(255,69,0,0.35)">
                   <div><span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-faint)">STATUS</span><div style="font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:0.06em;color:#FF4500;margin-top:4px">{{ r.status }}</div></div>
@@ -350,12 +361,12 @@
                 </div>
 
                 <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-faint);margin-top:12px">DESCRIPTION</div>
-                <p style="margin:6px 0 0;max-width:64ch;font-family:var(--font-mono);font-size:12px;line-height:1.6;color:var(--bone-white)">{{ r.desc }}</p>
+                <p style="margin:6px 0 0;max-width:64ch;font-family:var(--font-mono);font-size:14px;line-height:1.6;color:var(--bone-white)">{{ r.desc }}</p>
 
                 <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-faint);margin-top:14px">ACTIONS</div>
                 <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px">
                   <sc-for list="{{ r.actions }}" as="a" hint-placeholder-count="2">
-                    <a href="{{ a.href }}" target="_blank" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#FF4500;background:transparent;border:1px solid #FF4500;padding:9px 13px;transition:none;cursor:crosshair" style-hover="background:#FF4500;color:#0C0C0E">&gt; {{ a.label }}</a>
+                    <a href="{{ a.href }}" onClick="{{ a.onClick }}" target="_blank" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#FF4500;background:transparent;border:1px solid #FF4500;padding:9px 13px;transition:none;cursor:crosshair" style-hover="background:#FF4500;color:#0C0C0E">&gt; {{ a.label }}</a>
                   </sc-for>
                 </div>
               </div>
@@ -382,7 +393,7 @@
               <span style="position:absolute;inset:0;background:#FF4500;mix-blend-mode:multiply"></span>
             </div>
             <div>
-              <h2 style="margin:0;font-family:var(--font-display);font-weight:800;font-size:clamp(34px,4.4vw,56px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;color:var(--bone-white)">OPEN A<br>CHANNEL</h2>
+              <h2 style="margin:0;font-family:var(--font-display);font-weight:800;font-size:clamp(34px,4.4vw,56px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;color:var(--bone-white)"><span class="eh-tall">OPEN A</span><br><span class="eh-tall">CHANNEL</span></h2>
               <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin-top:10px">DATA SINK · INBOUND QUERIES</div>
             </div>
           </div>
@@ -419,10 +430,6 @@
 
   <!-- ===================== FOOTER HORIZON ===================== -->
   <footer style="position:relative;width:100%;background:#0C0C0E">
-    <div style="width:100%;height:130px;overflow:hidden;position:relative;border-bottom:2px solid #FF4500">
-      <img src="assets/img/sec3-matrix-coral.png" class="nsb-matrix" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.15; pointer-events: none">
-      <div style="position: absolute; inset: 0; background: linear-gradient(to bottom,rgba(12,12,14,0.55),rgba(12,12,14,0))"></div>
-    </div>
     <div style="max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;padding:20px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-faint)">
       <span>SYSTEM·3 // ETHAN HAARER · COGNITIVE MANIFOLD v2.1.0</span>
       <x-import component-from-global-scope="NeuroSymbolicBrutalistDesignSystem_cd7104.Barcode" seed="EHAARER-2025" height="26" label="LAST BUILD · SEP 2025" tone="bone" hint-size="150px,42px"></x-import>
@@ -448,17 +455,17 @@ class Component extends DCLogic {
         meta: 'GENerativve AI · SPARK · ELT Pipelines · Databricks · MS Data Factory · SQL', logo: 'assets/img/logo-kpmg-coral.png', time: 'May – August 2024' },
     ];
     const projectSpecs = [
-      { title: 'Axis Mundi: \nLive OSINT Globe', status: 'PRIVATE_BETA', classRef: 'OSINT',
+      { short: 'Axis Mundi', title: 'Axis Mundi: \nLive OSINT Globe', status: 'PRIVATE_BETA', classRef: 'OSINT',
         meta: 'TYPESCRIPT · REACT · CESIUMJS · HONO · SGP4 · WEB WORKERS · VERCEL EDGE',
         desc: 'Axis Mundi is a live open-source-intelligence picture of the entire planet rendered on a single 3D globe. A caching Hono feed gateway fuses dozens of keyless public sources: ADS-B transponders for ~11,000 aircraft worldwide, AIS vessel beacons, the active satellite catalogue, seismographs, disaster alerts, satellite fire detections, weather radar and nearly 10,000 public traffic cameras. The CesiumJS + React client draws all of it as one monochrome operating picture of thin vector coastlines over a dot-matrix Earth, monospace telemetry, and colour only where it carries meaning. Orbits are propagated with SGP4 inside a Web Worker so thousands of satellites move without stalling the interface, and every aircraft is dead-reckoned between refreshes. On top sits an analyst console: an inspector for any contact, full flight paths with origin, destination and ETA, satellite pass predictions, area queries exported as GeoJSON, great-circle measurement, a live camera wall, and sensor optics.',
         media: 'globe', snapshot: 'assets/data/axis-mundi-snapshot.json', basemap: 'assets/data/earth-110m.json',
         actions: [ { label: 'ACCESS_REPOSITORY', href: 'https://github.com/EHaarer/AxisMundi' }, { label: 'LAUNCH_LIVE_SITE', href: 'https://axis-mundi-self.vercel.app' } ] },
-      { title: 'Waldo: \n Geospatial Inference via Multimodal Fine-Tuning', status: 'COMPLETE', classRef: 'GEO-ML',
+      { short: 'WALDO', title: 'Waldo: \nGeospatial Inference via Multimodal Fine-Tuning', status: 'COMPLETE', classRef: 'GEO-ML',
         meta: 'PYTHON · VLM · LoRA · Modality Alignment',
         desc: 'This framework fine-tunes open-source vision-language models (Qwen-2-VL and InternVL) to perform precise geo-localization directly from global street-level imagery. By integrating a locatability-aware curriculum and a novel coordinate-span-weighted loss function, the architecture progressively trains on visually complex environments to predict exact continuous coordinates. At inference, the system employs Retrieval-Augmented Generation (RAG) to ground predictions using visual and geographic priors. Experimental evaluations reveal critical insights into the limitations of standard cross-entropy objectives for spatial mapping, offering a lightweight alternative to massive retrieval-only geolocation pipelines.',
         img: 'assets/img/proj-waldo-coral.png',
-        actions: [ { label: 'ACCESS_REPOSITORY', href: 'https://github.com/EHaarer' }, { label: 'READ_WHITEPAPER', href: '#' } ] },
-      { title: 'Decision Transformers: \nEncoder Ablations for Offline RL', status: 'COMPLETE', classRef: 'SEQ-RL',
+        actions: [ { label: 'ACCESS_REPOSITORY', href: 'https://github.gatech.edu/nvasan7/WALDO' }, { label: 'READ_WHITEPAPER', href: 'assets/docs/waldo-whitepaper.pdf' } ] },
+      { short: 'Decision Transformers', title: 'Decision Transformers: \nEncoder Ablations for Offline RL', status: 'COMPLETE', classRef: 'SEQ-RL',
         meta: 'PYTORCH · TRANSFORMER · GNN · ViT',
         media: 'video',
         video: 'assets/img/dt-hopper-rollout.mp4',
@@ -467,8 +474,8 @@ class Component extends DCLogic {
         chartAlt: 'Node embedding L2 norms over time for torso, thigh, shin and foot',
         desc: 'This work re-frames reinforcement learning as conditional sequence modeling and interrogates the state-encoding bottleneck of the vanilla Decision Transformer. The shallow CNN visual encoder is replaced with a parameter-matched Vision Transformer whose patch-wise global attention lets the agent track distant entities in Ms. Pacman \u2014 lifting median return to the conditioned target where the CNN collapses. For continuous control, a Graph Neural Network encodes the Hopper morphology as a fixed kinematic graph (torso \u2192 thigh \u2192 shin \u2192 foot), injecting a physics prior that yields a +24.96% peak-return gain on Hopper-Expert. Per-node L2-norm telemetry (FIG.B) confirms the encoder internalizes the periodic air\u2192impact\u2192jump structure of locomotion, with the torso dominating balance and the thigh spiking at take-off.',
         img: 'assets/img/dt-node-l2-norm.png',
-        actions: [ { label: 'READ_WHITEPAPER', href: 'https://github.gatech.edu/nvasan7/decision-transformers-ablations' }, { label: 'PRESENTATION_VIDEO', href: 'https://youtu.be/4INLULLvBp0' } ] },
-      { title: 'Simulating the Battle of the Chinese Farm with RL', status: 'COMPLETE', classRef: 'MARL',
+        actions: [ { label: 'READ_WHITEPAPER', href: 'https://github.gatech.edu/nvasan7/decision-transformers-ablations' }, { label: 'PRESENTATION_VIDEO', href: 'https://www.youtube.com/watch?v=4INLULLvBp0' } ] },
+      { short: 'Simulating with Reinforcement Learning', title: 'Simulating the Battle of the Chinese Farm with RL', status: 'COMPLETE', classRef: 'MARL',
         meta: 'REINFORCEMENT LEARNING · MULTI-AGENT · NETLOGO',
         media: 'video',
         video: 'assets/img/chinesefarm-run.mp4',
@@ -477,35 +484,41 @@ class Component extends DCLogic {
         chartAlt: '3D interpolation of Israeli bridgehead percentage across learning rate, discount factor and exploration factor',
         desc: 'This project is an Agent-Based Model (ABM) simulating the October 1973 Battle of the Chinese Farm during the Yom Kippur War. Built using NetLogo, the simulation operates on a geographically accurate map that incorporates varying terrains, such as agricultural irrigation canals, water, and roads. The primary research question driving the simulation explores how the Egyptian army\'s rigid, risk-averse positioning impacted their territorial control against Israeli offensives. Instead of relying on static positional matrices, the model employs Q-learning algorithms to govern the actions of individual soldiers and tanks. These autonomous agents dynamically learn and adapt their battlefield strategies based on variable reward parameters, such as capturing strategic farm locations or defending bridgeheads, to emulate historical combat behaviors. \n\n\nBeyond historical analysis, the project serves a greater strategic purpose by quantifying traditionally qualitative military data. This allows contemporary military strategists to run dynamic models, pinpoint critical operational failures like inflexible counter-attacks or poor inter-divisional communication, and properly identify the tactical investments needed to turn the tide in modern warfare.',
         img: 'assets/img/proj-chinesefarm-coral.png',
-        actions: [ { label: 'ACCESS_PRESENTATION', href: 'https://github.com/EHaarer' }, { label: 'SIMULATION_REPO', href: '#' } ] },
-      { title: 'Outpost: \nWearable Multimodal Off-grid Edge AI Guide', status: 'PROTOTYPE', classRef: 'EDGE-AI',
+        actions: [ { label: 'ACCESS_PRESENTATION', href: 'assets/docs/chinese-farm-presentation.pdf' }, { label: 'SIMULATION_REPO', href: 'https://github.com/EHaarer/Simulating-Battle-of-Chinese-Farm' } ] },
+      { short: 'OUTPOST', title: 'Outpost: \nWearable Multimodal Off-grid Edge AI Guide', status: 'PROTOTYPE', classRef: 'EDGE-AI',
         meta: 'PYTHON · OLLAMA · RAG · YOLO · Computer Vision',
         desc: 'Outpost introduces a completely decentralized hardware-software package engineered to provide contextual navigation and environmental survival assistance in communication-deprived environments. Operating entirely on low-power edge compute sensors and boards, the system deploys 4-bit quantized multimodal array of AI models including Llama, YOLOv5, and more, capable of real-time audio-visual analysis with RAG retrieval to enable agent answers to be well-informed for survival situations. An on-board passive environment-detection system warns users of dangers like low oxygen count and long exposure times to extreme temperatures so operators can focus on their tasks with their needs being monitored for them. All utilized compute lies on-board at the Edge and can support general use of up to 10 hours per charge.',
         media: 'obj', model: 'assets/models/outpost.obj', modelRotX: -Math.PI/2,
         img: 'assets/img/proj-outpost-coral.png',
-        actions: [ { label: 'ACCESS_REPOSITORY', href: 'https://github.com/EHaarer' }, { label: 'WATCH_VIDEO_DEMO', href: '#' } ] },
-      { title: 'Predicting Pedestrian Position from Street-view Imagery', status: 'COMPLETE', classRef: 'SPATIAL-ML',
+        actions: [ { label: 'ACCESS_REPOSITORY', soon: true }, { label: 'WATCH_VIDEO_DEMO', href: 'https://youtu.be/nAYswtqHOxs' } ] },
+      { short: 'Predicting Pedestrian Positions', title: 'Predicting Pedestrian Position from Street-view Imagery', status: 'COMPLETE', classRef: 'SPATIAL-ML',
         meta: 'PYTHON · DEPTH-EST · GEOMETRY',
         desc: 'This project leverages spatial depth estimations and perspective mapping to predict continuous pedestrian trajectories directly within complex urban street-view environments. By training neural models to interpret monocular geometric distortions, the system infers volumetric coordinate boundaries without native active sensor arrays. The pipeline fuses raw visual tracking markers with symbolic physics engines to prevent unrealistic trajectory paths through structural layout obstacles. Benchmark testing shows competitive positional estimation metrics across crowded metropolitan intersections.',
         img: 'assets/img/proj-pedestrian-coral.png',
-        actions: [ { label: 'READ_WHITEPAPER', href: 'https://github.com/EHaarer' } ] },
-      { title: 'Inspiration AI: \nGenerative AI for Dungeons and Dragons', status: 'DWN_4_Maintence', classRef: 'NEURO-SYM',
+        actions: [ { label: 'READ_WHITEPAPER', href: 'assets/docs/pedestrian-position-whitepaper.pdf' } ] },
+      { short: 'Inspiration AI', title: 'Inspiration AI: \nGenerative AI for Dungeons and Dragons', status: 'DWN_4_Maintence', classRef: 'NEURO-SYM',
         meta: 'PYTHON · STREAMLIT · DIFFUSION',
         desc: 'Inspiration AI acts as a neuro-symbolic game engine designed to generate structurally coherent narratives, mechanics, and character sheets for tabletop roleplaying frameworks. The system uses LLMs to author creative lore, while simultaneously using a hard-coded symbolic rule parser to ensure absolute mathematical compliance with core game mechanics. By binding flexible semantic generations within deterministic constraints, it eliminates hallucinated rules and stat discrepancies typical of standard generative text tools. The final interface delivers seamless interactive game-mastering assistance across long-term campaigns.',
         img: 'assets/img/proj-inspiration-coral.png',
-        actions: [ { label: 'ACCESS_DEMO', href: 'https://github.com/EHaarer' }, { label: 'ACCESS_REPO', href: '#' } ] },
-      { title: 'QUENCH: Robotic Bartender', status: 'PROTOTYPE', classRef: 'ROBOTICS',
+        actions: [ { label: 'ACCESS_DEMO', soon: true }, { label: 'ACCESS_REPO', href: 'https://github.com/EHaarer' } ] },
+      { short: 'QUENCH', title: 'QUENCH: Robotic Bartender', status: 'PROTOTYPE', classRef: 'ROBOTICS',
         meta: 'C · ARDUINO · WI-FI Enabled · I2C · SPI · HARDWARE',
         desc: 'QUENCH is multimodal drink mixing machine, utilizing an Arduino Uno R4 to handle user drink requests either by RFID card\nand decoding card data, or through a web server to make custom drink combinations, accessible via a displayed QR code that links to a hosted server propped up on the connected Wi-Fi network. The pumps are modified peristaltic pumps that use rotary encoding with an IR sensor to ensure drink volume is consistent across every pour, regardless of viscosity or water pressure. Every input liquid is refillable through and easy-swap system. Has a cup-detection system that only pours if drink is present to avoid spillage.',
         media: 'obj', model: 'assets/models/quench.obj', modelRotX: -Math.PI/2,
         img: 'assets/img/proj-quench-coral.png',
-        actions: [ { label: 'ACCESS_REPO', href: 'https://github.com/EHaarer' }, { label: 'SYSTEM_DEMO_VIDEO', href: '#' } ] },
+        actions: [ { label: 'ACCESS_REPO', href: 'https://github.com/EHaarer/QUENCH-The-Multimodal-Bartending-Robot' }, { label: 'SYSTEM_DEMO_VIDEO', href: 'https://youtu.be/tKbe3_PHH2k' } ] },
     ];
     // every project starts expanded; the set records rows the visitor has collapsed
     const collapsedSet = this.state.collapsed || {};
     const projectRows = projectSpecs.map((p, i) => ({
       ...p,
       code: 'PROJ-' + String(i + 1).padStart(2, '0'),
+      actions: p.actions.map((a, j) => {
+        if (!a.soon) return { ...a, onClick: undefined };
+        const id = i + ':' + j;
+        return { label: this.state.soon === id ? 'UNDER CONSTRUCTION — CHECK BACK LATER' : a.label, href: '#',
+          onClick: (e) => { e.preventDefault(); clearTimeout(this._soonTimer); this.setState({ soon: id }); this._soonTimer = setTimeout(() => this.setState({ soon: null }), 3500); } };
+      }),
       isVideo: p.media === 'video',
       isObj: p.media === 'obj',
       isGlobe: p.media === 'globe',
